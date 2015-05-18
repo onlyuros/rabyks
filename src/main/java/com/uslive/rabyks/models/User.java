@@ -1,4 +1,4 @@
-package com.uslive.rabyks.model;
+package com.uslive.rabyks.models;
 
 import java.io.Serializable;
 import javax.persistence.*;
