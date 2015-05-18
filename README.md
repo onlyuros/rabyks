@@ -1,2 +1,4 @@
 ###   Rabyks   ###
-db.createCollection("rabyks_mongo", { autoIndexID : true })
+use rabyks_mongo
+db.createCollection("partner_object_setup", { autoIndexID : true })
+db.createCollection("reservations", { autoIndexID : true })
