@@ -1,4 +1,4 @@
-package com.uslive.rabyks.models;
+package com.uslive.rabyks.models.mongo;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;

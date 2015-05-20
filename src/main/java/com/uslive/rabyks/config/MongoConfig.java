@@ -25,7 +25,7 @@ public class MongoConfig extends AbstractMongoConfiguration {
 
     @Override
     protected String getMappingBasePackage() {
-        return "com.uslive.rabyks.models";
+        return "com.uslive.rabyks.models.mongo";
     }
     
     @Override

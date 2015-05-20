@@ -77,7 +77,7 @@ public class JpaConfiguration {
 		lef.setDataSource(this.dataSource());
 		lef.setJpaPropertyMap(this.jpaProperties());
 		lef.setJpaVendorAdapter(this.jpaVendorAdapter());
-		lef.setPackagesToScan(new String [] {"com.uslive.rabyks.models"});
+		lef.setPackagesToScan(new String [] {"com.uslive.rabyks.models.mysql"});
 
 		return lef;
 	}

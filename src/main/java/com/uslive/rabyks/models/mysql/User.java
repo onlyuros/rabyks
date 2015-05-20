@@ -1,7 +1,9 @@
-package com.uslive.rabyks.models;
+package com.uslive.rabyks.models.mysql;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
 import java.util.List;
 
 
