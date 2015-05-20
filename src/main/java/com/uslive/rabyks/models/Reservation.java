@@ -3,7 +3,7 @@ package com.uslive.rabyks.models;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document
+@Document(collection="reservation")
 public class Reservation {
 
 	@Id

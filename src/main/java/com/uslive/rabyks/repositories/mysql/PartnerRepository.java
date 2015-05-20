@@ -1,4 +1,4 @@
-package com.uslive.rabyks.repositories;
+package com.uslive.rabyks.repositories.mysql;
 		
 import java.io.Serializable;
 

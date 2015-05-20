@@ -1,4 +1,4 @@
-package com.uslive.rabyks.repositories;
+package com.uslive.rabyks.repositories.mysql;
 
 import java.io.Serializable;
 
@@ -9,6 +9,5 @@ import com.uslive.rabyks.models.User;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Serializable> {
-
 
 }
