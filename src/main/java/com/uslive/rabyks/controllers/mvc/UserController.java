@@ -31,7 +31,14 @@ public class UserController {
     @RequestMapping("/user/{id}")
     @ResponseBody
     public User getUser(@PathVariable Long id) {
-    	User user = userService.getUserById(id);
+    	
+    	User user = null;
+    	
+    	try {
+    		user = userService.getUserById(id);
+    	} catch (Exception e) {
+    		log.error("EXCEPTION!", e);
+    	}
     	if(user == null) {
     		log.error("No user with id: " + id + " found!");
     		return null;
