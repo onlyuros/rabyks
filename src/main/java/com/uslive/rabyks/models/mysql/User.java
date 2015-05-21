@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
+import com.uslive.rabyks.common.Role;
+
 import java.util.List;
 
 
@@ -15,12 +17,17 @@ import java.util.List;
 @Table(name="users")
 @NamedQuery(name="User.findAll", query="SELECT u FROM User u")
 public class User implements Serializable {
+	
 	private static final long serialVersionUID = 1L;
-	private int id;
+	
+	private Long id;
 	private String email;
-	private String number;
 	private String password;
-	private int role;
+	private String number;
+	
+	@Enumerated(EnumType.STRING)
+	private Role role;
+	
 	private List<Partner> partners;
 
 	public User() {
@@ -29,11 +36,11 @@ public class User implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	public int getId() {
+	public Long getId() {
 		return this.id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -47,15 +54,6 @@ public class User implements Serializable {
 	}
 
 
-	public String getNumber() {
-		return this.number;
-	}
-
-	public void setNumber(String number) {
-		this.number = number;
-	}
-
-
 	public String getPassword() {
 		return this.password;
 	}
@@ -64,12 +62,21 @@ public class User implements Serializable {
 		this.password = password;
 	}
 
+	
+	public String getNumber() {
+		return this.number;
+	}
 
-	public int getRole() {
+	public void setNumber(String number) {
+		this.number = number;
+	}
+	
+	
+	public Role getRole() {
 		return this.role;
 	}
 
-	public void setRole(int role) {
+	public void setRole(Role role) {
 		this.role = role;
 	}
 

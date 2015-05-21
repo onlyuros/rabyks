@@ -10,4 +10,5 @@ import com.uslive.rabyks.models.mysql.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, Serializable> {
 
+	public User findOneByEmail(String email);
 }

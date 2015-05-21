@@ -26,7 +26,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @ComponentScan(basePackages = {"com.uslive.rabyks"})
 @EnableTransactionManagement
 @EnableJpaRepositories(basePackages = "com.uslive.rabyks.repositories.mysql", entityManagerFactoryRef = "localContainerEntityManagerFactoryBean")
-@PropertySource("classpath:application.properties")
+@PropertySource("application.properties")
 public class JpaConfiguration {
 
 	@Autowired
