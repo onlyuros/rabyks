@@ -30,4 +30,9 @@ public class PartnerObjectSetup {
     public void setName(String name) {
         this.name = name;
     }
+    
+    @Override
+    public String toString() {
+    	return "Partner object setup id: " + id + " name: " + name;
+    }
 }

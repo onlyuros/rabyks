@@ -1,11 +1,7 @@
 package com.uslive.rabyks.models.mysql;
 
 import java.io.Serializable;
-
 import javax.persistence.*;
-
-import com.uslive.rabyks.common.Role;
-
 import java.util.List;
 
 
@@ -17,18 +13,14 @@ import java.util.List;
 @Table(name="users")
 @NamedQuery(name="User.findAll", query="SELECT u FROM User u")
 public class User implements Serializable {
-	
 	private static final long serialVersionUID = 1L;
-	
-	private Long id;
+	private int id;
 	private String email;
-	private String password;
 	private String number;
-	
-	@Enumerated(EnumType.STRING)
+	private String password;
+	private List<Partner> partners1;
 	private Role role;
-	
-	private List<Partner> partners;
+	private List<Partner> partners2;
 
 	public User() {
 	}
@@ -36,15 +28,17 @@ public class User implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	public Long getId() {
+	@Column(unique=true, nullable=false)
+	public int getId() {
 		return this.id;
 	}
 
-	public void setId(Long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
 
+	@Column(nullable=false, length=40)
 	public String getEmail() {
 		return this.email;
 	}
@@ -54,6 +48,17 @@ public class User implements Serializable {
 	}
 
 
+	@Column(length=20)
+	public String getNumber() {
+		return this.number;
+	}
+
+	public void setNumber(String number) {
+		this.number = number;
+	}
+
+
+	@Column(nullable=false, length=20)
 	public String getPassword() {
 		return this.password;
 	}
@@ -62,16 +67,20 @@ public class User implements Serializable {
 		this.password = password;
 	}
 
-	
-	public String getNumber() {
-		return this.number;
+
+	//bi-directional many-to-many association to Partner
+	@ManyToMany(mappedBy="users1")
+	public List<Partner> getPartners1() {
+		return this.partners1;
 	}
 
-	public void setNumber(String number) {
-		this.number = number;
+	public void setPartners1(List<Partner> partners1) {
+		this.partners1 = partners1;
 	}
-	
-	
+
+
+	//bi-directional one-to-one association to Role
+	@OneToOne(mappedBy="user")
 	public Role getRole() {
 		return this.role;
 	}
@@ -86,18 +95,18 @@ public class User implements Serializable {
 	@JoinTable(
 		name="user_partner"
 		, joinColumns={
-			@JoinColumn(name="user_id")
+			@JoinColumn(name="user_id", nullable=false)
 			}
 		, inverseJoinColumns={
-			@JoinColumn(name="partner_id")
+			@JoinColumn(name="partner_id", nullable=false)
 			}
 		)
-	public List<Partner> getPartners() {
-		return this.partners;
+	public List<Partner> getPartners2() {
+		return this.partners2;
 	}
 
-	public void setPartners(List<Partner> partners) {
-		this.partners = partners;
+	public void setPartners2(List<Partner> partners2) {
+		this.partners2 = partners2;
 	}
 
 }

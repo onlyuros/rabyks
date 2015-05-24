@@ -1,9 +1,7 @@
 package com.uslive.rabyks.models.mysql;
 
 import java.io.Serializable;
-
 import javax.persistence.*;
-
 import java.util.List;
 
 
@@ -25,8 +23,10 @@ public class Partner implements Serializable {
 	private String layoutImgUrl;
 	private String logoUrl;
 	private String name;
+	private int type;
 	private String workingHours;
-	private List<User> users;
+	private List<User> users1;
+	private List<User> users2;
 
 	public Partner() {
 	}
@@ -34,6 +34,7 @@ public class Partner implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(unique=true, nullable=false)
 	public int getId() {
 		return this.id;
 	}
@@ -43,6 +44,7 @@ public class Partner implements Serializable {
 	}
 
 
+	@Column(nullable=false, length=100)
 	public String getAddress() {
 		return this.address;
 	}
@@ -52,6 +54,7 @@ public class Partner implements Serializable {
 	}
 
 
+	@Column(length=100)
 	public String getDetails() {
 		return this.details;
 	}
@@ -61,7 +64,7 @@ public class Partner implements Serializable {
 	}
 
 
-	@Column(name="galery_img_1_url")
+	@Column(name="galery_img_1_url", length=100)
 	public String getGaleryImg1Url() {
 		return this.galeryImg1Url;
 	}
@@ -71,7 +74,7 @@ public class Partner implements Serializable {
 	}
 
 
-	@Column(name="galery_img_2_url")
+	@Column(name="galery_img_2_url", length=100)
 	public String getGaleryImg2Url() {
 		return this.galeryImg2Url;
 	}
@@ -81,7 +84,7 @@ public class Partner implements Serializable {
 	}
 
 
-	@Column(name="galery_img_3_url")
+	@Column(name="galery_img_3_url", length=100)
 	public String getGaleryImg3Url() {
 		return this.galeryImg3Url;
 	}
@@ -91,7 +94,7 @@ public class Partner implements Serializable {
 	}
 
 
-	@Column(name="layout_img_url")
+	@Column(name="layout_img_url", nullable=false, length=100)
 	public String getLayoutImgUrl() {
 		return this.layoutImgUrl;
 	}
@@ -101,7 +104,7 @@ public class Partner implements Serializable {
 	}
 
 
-	@Column(name="logo_url")
+	@Column(name="logo_url", nullable=false, length=100)
 	public String getLogoUrl() {
 		return this.logoUrl;
 	}
@@ -111,6 +114,7 @@ public class Partner implements Serializable {
 	}
 
 
+	@Column(nullable=false, length=30)
 	public String getName() {
 		return this.name;
 	}
@@ -120,7 +124,17 @@ public class Partner implements Serializable {
 	}
 
 
-	@Column(name="working_hours")
+	@Column(nullable=false)
+	public int getType() {
+		return this.type;
+	}
+
+	public void setType(int type) {
+		this.type = type;
+	}
+
+
+	@Column(name="working_hours", nullable=false, length=100)
 	public String getWorkingHours() {
 		return this.workingHours;
 	}
@@ -131,13 +145,33 @@ public class Partner implements Serializable {
 
 
 	//bi-directional many-to-many association to User
-	@ManyToMany(mappedBy="partners")
-	public List<User> getUsers() {
-		return this.users;
+	@ManyToMany
+	@JoinTable(
+		name="user_partner"
+		, joinColumns={
+			@JoinColumn(name="partner_id", nullable=false)
+			}
+		, inverseJoinColumns={
+			@JoinColumn(name="user_id", nullable=false)
+			}
+		)
+	public List<User> getUsers1() {
+		return this.users1;
 	}
 
-	public void setUsers(List<User> users) {
-		this.users = users;
+	public void setUsers1(List<User> users1) {
+		this.users1 = users1;
+	}
+
+
+	//bi-directional many-to-many association to User
+	@ManyToMany(mappedBy="partners2")
+	public List<User> getUsers2() {
+		return this.users2;
+	}
+
+	public void setUsers2(List<User> users2) {
+		this.users2 = users2;
 	}
 
 }

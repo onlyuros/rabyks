@@ -1,5 +1,5 @@
 package com.uslive.rabyks.common;
 
-public enum Role {
+public enum RoleEnum {
 	USER, ADMIN
 }
