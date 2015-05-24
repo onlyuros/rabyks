@@ -36,26 +36,27 @@ public class ApiSecurityConfig extends WebSecurityConfigurerAdapter {
         		.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
         		.exceptionHandling().authenticationEntryPoint(new Http403ForbiddenEntryPoint());
     }
-	 
-	 protected void registerAuthentication(AuthenticationManagerBuilder auth) throws Exception {
-		 auth.authenticationProvider(rememberMeAuthenticationProvider());
-	 }
-	 
-	 @Bean 
-	 public RememberMeAuthenticationFilter rememberMeAuthenticationFilter() throws Exception{
-		 return new RememberMeAuthenticationFilter(authenticationManager(), tokenBasedRememberMeService());
-	 }
-	 
-	 @Bean 
-	 public CustomTokenBasedRememberMeService tokenBasedRememberMeService(){
-		 CustomTokenBasedRememberMeService service = new CustomTokenBasedRememberMeService(tokenKey, customUserDetailsService);
-		 service.setAlwaysRemember(true);
-		 service.setCookieName("at");
-		 return service;
-	 }
-	 
-	 @Bean 
-	 RememberMeAuthenticationProvider rememberMeAuthenticationProvider(){
-		 return new RememberMeAuthenticationProvider(tokenKey);
-	 }
+	
+	@Override
+	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+		auth.authenticationProvider(rememberMeAuthenticationProvider());
+	}
+		 
+	@Bean 
+	public RememberMeAuthenticationFilter rememberMeAuthenticationFilter() throws Exception{
+		return new RememberMeAuthenticationFilter(authenticationManager(), tokenBasedRememberMeService());
+	}
+		 
+	@Bean 
+	public CustomTokenBasedRememberMeService tokenBasedRememberMeService(){
+		CustomTokenBasedRememberMeService service = new CustomTokenBasedRememberMeService(tokenKey, customUserDetailsService);
+		service.setAlwaysRemember(true);
+		service.setCookieName("at");
+		return service;
+	}
+		 
+	@Bean 
+	RememberMeAuthenticationProvider rememberMeAuthenticationProvider(){
+		return new RememberMeAuthenticationProvider(tokenKey);
+	}
 }
