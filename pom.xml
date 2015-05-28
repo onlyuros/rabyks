@@ -21,7 +21,7 @@
     </parent>
 
     <dependencies>
-    	<!-- Spring Boot Starter -->
+    	<!-- Spring Boot Starter --> 
     	<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-websocket</artifactId>
@@ -34,7 +34,7 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
-		<!-- Spring Boot Security -->
+		<!-- Spring Boot Security
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-messaging</artifactId>
@@ -53,8 +53,8 @@
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-config</artifactId>
-			<version>4.0.1.RELEASE</version>
-		</dependency>
+			<version>4.0.1.RELEASE</version> 
+		</dependency> -->
 		<!-- Third party libraries -->
 		<dependency>
 			<groupId>cglib</groupId>
@@ -77,6 +77,11 @@
 	</dependencies>
         
 	<build>
+	    <resources>
+	        <resource>
+	            <directory>src/main/resources</directory>
+	        </resource>
+	    </resources>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
