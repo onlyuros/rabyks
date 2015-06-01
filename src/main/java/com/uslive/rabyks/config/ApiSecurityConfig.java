@@ -14,6 +14,7 @@ import org.springframework.security.web.authentication.Http403ForbiddenEntryPoin
 import org.springframework.security.web.authentication.rememberme.RememberMeAuthenticationFilter;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
+import com.uslive.rabyks.config.CustomTokenBasedRememberMeService;
 import com.uslive.rabyks.services.CustomUserDetailsService;
 
 @Configuration

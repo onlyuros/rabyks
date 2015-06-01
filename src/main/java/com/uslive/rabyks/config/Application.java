@@ -10,12 +10,12 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @SpringBootApplication
+@ComponentScan(basePackages="com.uslive.rabyks")
 @PropertySource("classpath:application.properties")
 @EntityScan(basePackages="com.uslive.rabyks.models.mysql")
 @EnableMongoRepositories(basePackages="com.uslive.rabyks.repositories.mongo")
 @EnableTransactionManagement
 @EnableJpaRepositories(basePackages="com.uslive.rabyks.repositories.mysql")
-@ComponentScan(basePackages="com.uslive.rabyks")
 public class Application{
 
 	public static void main(String[] args) {
