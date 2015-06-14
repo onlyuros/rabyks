@@ -3,20 +3,13 @@ package com.uslive.rabyks.controllers.websocket;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.stereotype.Component;
-
 import com.uslive.rabyks.common.SharedLists;
 
-@Component
-public class DragstorSocketServer implements CommandLineRunner {
+public class DragstorSocketServer extends Thread{
 
-	@Value("${dragstor.port}")
-	private int dragstorPort;
+	private int dragstorPort = 4444;
 	
-	@Override
-	public void run(String... args) throws Exception {
+	public void run() {
 
 		try (ServerSocket serverSocket = new ServerSocket(dragstorPort)) {
 			System.out.println("Pokrenut server na portu: " + dragstorPort);
@@ -24,6 +17,7 @@ public class DragstorSocketServer implements CommandLineRunner {
 			boolean listening = true;
 			
 			while(listening) {
+				
 				Socket clubSocket = serverSocket.accept();
 				SharedLists.listaKonektovanihKlijenataDragstor.add(clubSocket);
 	    		new ClubSocketThread(clubSocket).start();

@@ -14,6 +14,10 @@ import com.uslive.rabyks.common.SharedLists;
 public class ClubSocketThread extends Thread {
 
 	private Socket socket = null;
+
+	public ClubSocketThread() {
+		
+	}
 	
     public ClubSocketThread(Socket socket) {
         super("ClubSocket");

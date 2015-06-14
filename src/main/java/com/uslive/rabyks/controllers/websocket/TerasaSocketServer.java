@@ -3,20 +3,13 @@ package com.uslive.rabyks.controllers.websocket;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.stereotype.Component;
-
 import com.uslive.rabyks.common.SharedLists;
 
-@Component
-public class TerasaSocketServer implements CommandLineRunner {
-
-	@Value("${terasa.port}")
-	private int terasaPort;
+public class TerasaSocketServer extends Thread {
 	
-	@Override
-	public void run(String... args) throws Exception {
+	int terasaPort = 4445;
+
+	public void run() {
 
 		try (ServerSocket serverSocket = new ServerSocket(terasaPort)) {
 			System.out.println("Pokrenut server na portu: " + terasaPort);
@@ -25,7 +18,7 @@ public class TerasaSocketServer implements CommandLineRunner {
 			
 			while(listening) {
 				
-				Socket clubSocket = serverSocket.accept();
+				Socket clubSocket = serverSocket.accept();	
 				SharedLists.listaKonektovanihKlijenataTerasa.add(clubSocket);
 	    		new ClubSocketThread(clubSocket).start();
 	    	}
