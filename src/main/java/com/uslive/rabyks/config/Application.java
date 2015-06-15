@@ -10,8 +10,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import com.uslive.rabyks.controllers.websocket.DragstorSocketServer;
-import com.uslive.rabyks.controllers.websocket.TerasaSocketServer;
+import com.uslive.rabyks.controllers.websocket.SocketServer;
 
 @SpringBootApplication
 @ComponentScan(basePackages="com.uslive.rabyks")
@@ -28,7 +27,6 @@ public class Application implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
-		new DragstorSocketServer().start();
-		new TerasaSocketServer().start();
+		new SocketServer().start();
 	}
 }

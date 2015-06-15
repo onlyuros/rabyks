@@ -1,14 +1,12 @@
 package com.uslive.rabyks.common;
 
-import java.net.Socket;
 import java.util.ArrayList;
 
+import com.uslive.rabyks.controllers.websocket.ClubNameSocket;
+
 public class SharedLists {
-	public static ArrayList<Socket> listaKonektovanihKlijenataDragstor = new ArrayList<Socket>();
-	public static ArrayList<Integer> listaRezervisanihObjekataDragstor = new ArrayList<Integer>();
+
+	public static String[] clubList = {"dragstor", "terasa"};
 	
-	public static ArrayList<Socket> listaKonektovanihKlijenataTerasa = new ArrayList<Socket>();
-	public static ArrayList<Integer> listaRezervisanihObjekataTerasa = new ArrayList<Integer>();
-	
-	
+	public static ArrayList<ClubNameSocket> clubNameSocketList = new ArrayList<ClubNameSocket>();
 }
