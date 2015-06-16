@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import com.uslive.rabyks.common.Common;
 import com.uslive.rabyks.common.RoleEnum;
 import com.uslive.rabyks.models.mysql.User;
 import com.uslive.rabyks.repositories.mysql.RoleRepository;
@@ -42,21 +41,14 @@ public class LoginController {
 			String email = jsonUser.getString("email");
 			String number = jsonUser.getString("number");
 			String password = jsonUser.getString("password");
-			String hash = jsonUser.getString("hash");
 			
-			String userToHash = username + " " + email + " " + password + " " + number;
-			String hashed = Common.hashPost(env.getProperty("register_url"), userToHash);
+			User userDB = new User();
+			userDB.setPassword(password); // TODO SAVE ENCRYPTED
+			userDB.setNumber(number);
+			userDB.setEmail(email);
+			userDB.setRole(roleRepository.findByRole(RoleEnum.USER.ordinal()));
+			userRepository.save(userDB);
 			
-			if (hashed.equals(hash)) {
-				User userDB = new User();
-				userDB.setPassword(password); // TODO SAVE ENCRYPTED
-				userDB.setNumber(number);
-				userDB.setEmail(email);
-				userDB.setRole(roleRepository.findByRole(RoleEnum.USER.ordinal()));
-				userRepository.save(userDB);
-			} else {
-				log.error("Hash not same!!!");
-			}
 		} catch(Exception e) {
 			log.error("Registration failed", e.getMessage());
 		}

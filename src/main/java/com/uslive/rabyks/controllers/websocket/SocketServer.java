@@ -3,9 +3,19 @@ package com.uslive.rabyks.controllers.websocket;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-public class SocketServer extends Thread{
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.ApplicationContext;
+import org.springframework.stereotype.Component;
 
-	public void run() {
+@Component
+public class SocketServer implements CommandLineRunner{
+
+	@Autowired
+	private ApplicationContext context;
+	
+	@Override
+	public void run(String... args) throws Exception  {
 
 		try (ServerSocket serverSocket = new ServerSocket(4444)) {
 			System.out.println("Pokrenut server na portu: " + 4444);
@@ -15,7 +25,10 @@ public class SocketServer extends Thread{
 			while(listening) {
 				
 				Socket clubSocket = serverSocket.accept();
-	    		new ClubSocketThread(clubSocket).start();
+				ClubSocketThread cst = (ClubSocketThread) context.getBean("clubSocketThread", clubSocket);
+	    		cst.start();
+				
+				//new ClubSocketThread(clubSocket).start();
 	    	}
 			
 	    } catch (Exception e) {

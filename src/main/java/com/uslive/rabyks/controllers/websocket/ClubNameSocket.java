@@ -33,4 +33,9 @@ public class ClubNameSocket {
 	public void setSocket(Socket socket) {
 		this.socket = socket;
 	}
+	
+	@Override
+	public String toString() {
+		return "[" + getClubName() + ", " + getSocket().getPort() + " ]";
+	}
 }

@@ -48,13 +48,7 @@ public class PartnerObjectSetupController {
 		} catch (Exception e) {
 			log.error(e.getMessage());
 		}
-		System.out.println("proslo!!");
 		return pos;
-//		if(id == 0) {
-//			return posRepository.findAll();
-//		} else {
-//			return posRepository.findByPartnerId(id);
-//		}
 	}
 	
 	@RequestMapping(value="/postPartnerObjectSetup", method=RequestMethod.POST)
