@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
+import com.uslive.rabyks.models.mongo.Objects;
 
 @Document(collection="partner_object_setup")
 public class PartnerObjectSetup {
@@ -23,7 +24,7 @@ public class PartnerObjectSetup {
     
     private int defaultStandSeatCount;
     
-    List <ReservationObject> objects;
+    List<Objects> objects;
 
 	public String getId() {
 		return id;
@@ -67,10 +68,10 @@ public class PartnerObjectSetup {
 		this.defaultStandSeatCount = defaultStandSeatCount;
 	}
 
-	public List<ReservationObject> getObjects() {
+	public List<Objects> getObjects() {
 		return objects;
 	}
-	public void setObjects(List<ReservationObject> objects) {
+	public void setObjects(List<Objects> objects) {
 		this.objects = objects;
 	}
 	@Override

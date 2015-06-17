@@ -3,6 +3,8 @@ package com.uslive.rabyks.controllers.websocket;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.ApplicationContext;
@@ -11,6 +13,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class SocketServer implements CommandLineRunner{
 
+	private static Logger log = LoggerFactory.getLogger(SocketServer.class);
 	@Autowired
 	private ApplicationContext context;
 	
@@ -27,12 +30,10 @@ public class SocketServer implements CommandLineRunner{
 				Socket clubSocket = serverSocket.accept();
 				ClubSocketThread cst = (ClubSocketThread) context.getBean("clubSocketThread", clubSocket);
 	    		cst.start();
-				
-				//new ClubSocketThread(clubSocket).start();
 	    	}
 			
 	    } catch (Exception e) {
-	    	System.err.println("Server socket start error! Port: " + 4444);
+	    	log.error("SocketServer error! ", e.getMessage());
 	    }
 	}
 }

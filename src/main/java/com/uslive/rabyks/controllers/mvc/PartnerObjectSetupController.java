@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.uslive.rabyks.models.mongo.PartnerObjectSetup;
-import com.uslive.rabyks.models.mongo.ReservationObject;
+import com.uslive.rabyks.models.mongo.Objects;
 import com.uslive.rabyks.repositories.mongo.PartnerObjectSetupRepository;
 
 @Controller
@@ -33,8 +33,8 @@ public class PartnerObjectSetupController {
 		PartnerObjectSetup pos = new PartnerObjectSetup();
 		
 		try {
-			ReservationObject ro = new ReservationObject(1, "separe", 1, 5, true, 5, new int[]{1,1});
-			List<ReservationObject> roL = new ArrayList<ReservationObject>();
+			Objects ro = new Objects(1, "separe", 1, 5, true, 5, new int[]{1,1});
+			List<Objects> roL = new ArrayList<Objects>();
 			roL.add(ro);
 			
 			pos.setObjects(roL);

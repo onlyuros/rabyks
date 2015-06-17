@@ -1,7 +1,7 @@
 package com.uslive.rabyks.models.mongo;
 
 
-public class ReservationObject {
+public class Objects {
 
 	private int objectId;
 	private String type; // separe sto...
@@ -11,7 +11,7 @@ public class ReservationObject {
 	private int numberOfSeats;
 	private int[] coordinates;
 	
-	public ReservationObject(int objectId, String type, int timeOut,
+	public Objects(int objectId, String type, int timeOut,
 			float price, boolean availability, int numberOfSeats,
 			int[] coordinates) {
 		super();
