@@ -2,7 +2,7 @@ package com.uslive.rabyks.common;
 
 import java.util.ArrayList;
 
-import com.uslive.rabyks.controllers.websocket.ClubNameSocket;
+import com.uslive.rabyks.models.ClubNameSocket;
 import com.uslive.rabyks.models.Rezervisan;
 
 public class SharedLists {

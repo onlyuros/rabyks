@@ -1,12 +1,10 @@
 package com.uslive.rabyks.repositories.mysql;
 
-import java.io.Serializable;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.uslive.rabyks.models.mysql.User;
 
-public interface UserRepository extends JpaRepository<User, Serializable> {
+public interface UserRepository extends JpaRepository<User, Integer> {
 
 	public User findOneByEmail(String email);
 

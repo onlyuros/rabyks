@@ -12,9 +12,10 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import com.uslive.rabyks.common.SharedLists;
+import com.uslive.rabyks.models.ClubNameSocket;
 import com.uslive.rabyks.models.Rezervisan;
 import com.uslive.rabyks.models.mongo.Reservation;
-import com.uslive.rabyks.repositories.mongo.ReservationRepositories;
+import com.uslive.rabyks.repositories.mongo.ReservationsRepository;
 
 @Component
 @Scope("prototype")
@@ -25,7 +26,7 @@ public class ClubSocketThread extends Thread {
 	private static Logger log = LoggerFactory.getLogger(ClubSocketThread.class);
 	
 	@Autowired
-	private ReservationRepositories rr;
+	private ReservationsRepository rr;
 	
 	public ClubSocketThread() {
 		

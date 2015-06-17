@@ -4,6 +4,6 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 import com.uslive.rabyks.models.mongo.Reservation;
 
-public interface ReservationRepositories extends MongoRepository<Reservation, String> {
+public interface ReservationsRepository extends MongoRepository<Reservation, String> {
 
 }
