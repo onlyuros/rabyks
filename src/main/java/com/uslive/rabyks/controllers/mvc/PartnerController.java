@@ -38,11 +38,9 @@ public class PartnerController {
 	
 	@RequestMapping(value="/getPartners", method=RequestMethod.GET)
 	@ResponseBody
-	public String getPartners() {
+	public List<Partner> getPartners() {
 		try {
-			List<Partner> rezultat = partnerRepo.findAll();	
-			System.out.println(rezultat.toString());
-			return rezultat.toString();
+			return partnerRepo.findAll();
 		} catch (Exception e) {
 			log.error("getPartners error: ", e.getMessage());
 			return null;
@@ -51,15 +49,15 @@ public class PartnerController {
 	
 	@RequestMapping(value="/getPartner/{name}", method=RequestMethod.GET)
 	@ResponseBody
-	public Partner getPartnerByName(@PathVariable("name") String name) {
+	public String getPartnerByName(@PathVariable("name") String name) {
 		
 		Partner partner = null;
 		try {
 			partner = partnerRepo.findByName(name);
-			return partner; 
+			return partner.toString(); 
 		} catch (Exception e) {
 			log.error("getPartnerById error: ", e.getMessage());
-			return partner;
+			return partner.toString();
 		}
 	} 
 }

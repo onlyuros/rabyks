@@ -1,7 +1,9 @@
 package com.uslive.rabyks.models.mysql;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
 import java.util.List;
 
 
@@ -11,7 +13,6 @@ import java.util.List;
  */
 @Entity
 @Table(name="partners")
-@NamedQuery(name="Partner.findAll", query="SELECT p FROM Partner p")
 public class Partner implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private int id;
@@ -31,6 +32,22 @@ public class Partner implements Serializable {
 	public Partner() {
 	}
 
+	public Partner(int id, String address, String details,
+			String galeryImg1Url, String galeryImg2Url, String galeryImg3Url,
+			String layoutImgUrl, String logoUrl, String name, int type,
+			String workingHours) {
+		this.id = id;
+		this.address = address;
+		this.details = details;
+		this.galeryImg1Url = galeryImg1Url;
+		this.galeryImg2Url = galeryImg2Url;
+		this.galeryImg3Url = galeryImg3Url;
+		this.layoutImgUrl = layoutImgUrl;
+		this.logoUrl = logoUrl;
+		this.name = name;
+		this.type = type;
+		this.workingHours = workingHours;
+	}
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -173,5 +190,16 @@ public class Partner implements Serializable {
 	public void setUsers2(List<User> users2) {
 		this.users2 = users2;
 	}
-	
+
+
+	@Override
+	public String toString() {
+		return "Partner [id=" + id + ", address=" + address + ", details="
+				+ details + ", galeryImg1Url=" + galeryImg1Url
+				+ ", galeryImg2Url=" + galeryImg2Url + ", galeryImg3Url="
+				+ galeryImg3Url + ", layoutImgUrl=" + layoutImgUrl
+				+ ", logoUrl=" + logoUrl + ", name=" + name + ", type=" + type
+				+ ", workingHours=" + workingHours + ", users1=" + users1
+				+ ", users2=" + users2 + "]";
+	}
 }
