@@ -40,7 +40,9 @@ public class PartnerController {
 	@ResponseBody
 	public List<Partner> getPartners() {
 		try {
-			return partnerRepo.findAll();
+			List<Partner> rezultat = partnerRepo.findAll();
+			System.out.println(rezultat.toString());
+			return rezultat;
 		} catch (Exception e) {
 			log.error("getPartners error: ", e.getMessage());
 			return null;
