@@ -173,5 +173,5 @@ public class Partner implements Serializable {
 	public void setUsers2(List<User> users2) {
 		this.users2 = users2;
 	}
-
+	
 }

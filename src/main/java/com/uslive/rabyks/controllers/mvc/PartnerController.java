@@ -38,11 +38,11 @@ public class PartnerController {
 	
 	@RequestMapping(value="/getPartners", method=RequestMethod.GET)
 	@ResponseBody
-	public List<Partner> getPartners() {
+	public String getPartners() {
 		try {
-			List<Partner> rezultat = partnerRepo.findAll();
+			List<Partner> rezultat = partnerRepo.findAll();	
 			System.out.println(rezultat.toString());
-			return rezultat;
+			return rezultat.toString();
 		} catch (Exception e) {
 			log.error("getPartners error: ", e.getMessage());
 			return null;
