@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 27, 2015 at 09:41 PM
+-- Generation Time: Jun 20, 2015 at 06:04 PM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -41,8 +41,18 @@ CREATE TABLE IF NOT EXISTS `partners` (
   `type` int(11) NOT NULL,
   `details` varchar(100) DEFAULT NULL,
   `working_hours` varchar(100) NOT NULL,
+  `created_at` bigint(20) NOT NULL,
+  `modified_at` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `partners`
+--
+
+INSERT INTO `partners` (`id`, `name`, `address`, `logo_url`, `layout_img_url`, `galery_img_1_url`, `galery_img_2_url`, `galery_img_3_url`, `type`, `details`, `working_hours`, `created_at`, `modified_at`) VALUES
+(1, 'drugstore', 'Mali Simanovci 200', 'https://s3-us-west-2.amazonaws.com/klubovi/drugstore1.jpg', 'https://s3-us-west-2.amazonaws.com/klubovi/drugstoreLayout.png', 'https://s3-us-west-2.amazonaws.com/klubovi/drugstore2.jpg', 'https://s3-us-west-2.amazonaws.com/klubovi/drugstore3.jpg', 'https://s3-us-west-2.amazonaws.com/klubovi/drugstore4.jpg', 1, 'Dodjite da prskamo zajedno', '22-06', 692299830, NULL),
+(2, 'terrace', 'Idi mi dodji mi 3', 'https://s3-us-west-2.amazonaws.com/klubovi/terrace+(1).jpg', 'https://s3-us-west-2.amazonaws.com/klubovi/terrace+(2).jpg', 'https://s3-us-west-2.amazonaws.com/klubovi/terrace+(3).jpg', 'https://s3-us-west-2.amazonaws.com/klubovi/terrace+(4).jpg', 'https://s3-us-west-2.amazonaws.com/klubovi/terraceLayout.png', 2, 'Ovo ce da glumi nesto drugo', '16-22', 628191030, NULL);
 
 -- --------------------------------------------------------
 
@@ -56,7 +66,16 @@ CREATE TABLE IF NOT EXISTS `roles` (
   `role` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `roles`
+--
+
+INSERT INTO `roles` (`id`, `role`, `user_id`) VALUES
+(1, 1, 1),
+(2, 2, 2),
+(3, 3, 3);
 
 -- --------------------------------------------------------
 
@@ -72,14 +91,16 @@ CREATE TABLE IF NOT EXISTS `users` (
   `number` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `email`, `password`, `number`) VALUES
-(1, 'uros@hp.com', 'password', NULL);
+(1, 'uros@hp.com', 'password', NULL),
+(2, 'milos@gmail.com', 'password', '1234567'),
+(3, 'user@user.com', 'password', '7654321');
 
 -- --------------------------------------------------------
 
@@ -94,6 +115,16 @@ CREATE TABLE IF NOT EXISTS `user_partner` (
   PRIMARY KEY (`user_id`,`partner_id`),
   KEY `partner_id` (`partner_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `user_partner`
+--
+
+INSERT INTO `user_partner` (`user_id`, `partner_id`) VALUES
+(1, 1),
+(2, 1),
+(1, 2),
+(2, 2);
 
 --
 -- Constraints for dumped tables
