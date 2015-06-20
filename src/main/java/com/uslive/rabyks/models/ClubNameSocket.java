@@ -4,7 +4,7 @@ import java.net.Socket;
 
 public class ClubNameSocket {
 	
-	private String clubName;
+	private int partnerId;
 	
 	private Socket socket;
 	
@@ -12,18 +12,18 @@ public class ClubNameSocket {
 		
 	}
 
-	public ClubNameSocket(String clubName, Socket socket) {
+	public ClubNameSocket(int partnerId, Socket socket) {
 		super();
-		this.clubName = clubName;
+		this.partnerId = partnerId;
 		this.socket = socket;
 	}
 
-	public String getClubName() {
-		return clubName;
+	public int getPartnerId() {
+		return partnerId;
 	}
 
-	public void setClubName(String clubName) {
-		this.clubName = clubName;
+	public void setClubName(int partnerId) {
+		this.partnerId = partnerId;
 	}
 
 	public Socket getSocket() {
@@ -36,6 +36,6 @@ public class ClubNameSocket {
 	
 	@Override
 	public String toString() {
-		return "[" + getClubName() + ", " + getSocket().getPort() + " ]";
+		return "[" + getPartnerId() + ", " + getSocket().getPort() + " ]";
 	}
 }

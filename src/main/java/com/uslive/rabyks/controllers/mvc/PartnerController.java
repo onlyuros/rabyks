@@ -1,5 +1,6 @@
 package com.uslive.rabyks.controllers.mvc;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.uslive.rabyks.models.mysql.Partner;
@@ -59,5 +61,17 @@ public class PartnerController {
 			log.error("getPartnerById error: ", e.getMessage());
 			return partner.toString();
 		}
-	} 
+	}
+	
+	@RequestMapping(value="/getLatestPartners", method=RequestMethod.GET)
+	@ResponseBody
+	public List<Partner> getLatestPartners(@RequestParam(value="timestamp") String createdAt) {
+	
+		try { 
+			return partnerRepo.findByCreatedAtGreaterThan(Timestamp.valueOf(createdAt));
+		} catch (Exception e) {
+			log.error("getLatestPartners error! ", e.getMessage());
+			return null;
+		}
+	}
 }

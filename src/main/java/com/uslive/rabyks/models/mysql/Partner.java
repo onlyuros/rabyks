@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 
@@ -26,6 +27,8 @@ public class Partner implements Serializable {
 	private String name;
 	private int type;
 	private String workingHours;
+	private Timestamp createdAt;
+	private Timestamp modifiedAt;
 	private List<User> users1;
 	private List<User> users2;
 
@@ -160,7 +163,24 @@ public class Partner implements Serializable {
 		this.workingHours = workingHours;
 	}
 
+	@Column(name="created_at", nullable=false)
+	public Timestamp getCreatedAt()  {
+		return this.createdAt;
+	}
 
+	public void setCreatedAt(Timestamp createdAt) {
+		this.createdAt = createdAt;
+	}
+	
+	@Column(name="modified_at")
+	public Timestamp getModifiedAt()  {
+		return this.modifiedAt;
+	}
+
+	public void setModifiedAt(Timestamp modifiedAt) {
+		this.modifiedAt = modifiedAt;
+	}
+	
 	//bi-directional many-to-many association to User
 	@ManyToMany
 	@JoinTable(
@@ -189,17 +209,5 @@ public class Partner implements Serializable {
 
 	public void setUsers2(List<User> users2) {
 		this.users2 = users2;
-	}
-
-
-	@Override
-	public String toString() {
-		return "Partner [id=" + id + ", address=" + address + ", details="
-				+ details + ", galeryImg1Url=" + galeryImg1Url
-				+ ", galeryImg2Url=" + galeryImg2Url + ", galeryImg3Url="
-				+ galeryImg3Url + ", layoutImgUrl=" + layoutImgUrl
-				+ ", logoUrl=" + logoUrl + ", name=" + name + ", type=" + type
-				+ ", workingHours=" + workingHours + ", users1=" + users1
-				+ ", users2=" + users2 + "]";
 	}
 }

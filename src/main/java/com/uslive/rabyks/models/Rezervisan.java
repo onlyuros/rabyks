@@ -2,7 +2,7 @@ package com.uslive.rabyks.models;
 
 public class Rezervisan {
 
-	private String clubName;
+	private int partnerId;
 	
 	private int objectId;
 
@@ -10,18 +10,18 @@ public class Rezervisan {
 		
 	}
 	
-	public Rezervisan(String clubName, int objectId) {
+	public Rezervisan(int partnerId, int objectId) {
 		super();
-		this.clubName = clubName;
+		this.partnerId = partnerId;
 		this.objectId = objectId;
 	}
 
-	public String getClubName() {
-		return clubName;
+	public int getPartnerId() {
+		return partnerId;
 	}
 
-	public void setClubName(String clubName) {
-		this.clubName = clubName;
+	public void setPartnerId(int partnerId) {
+		this.partnerId = partnerId;
 	}
 
 	public int getObjectId() {

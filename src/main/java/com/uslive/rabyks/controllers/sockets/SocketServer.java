@@ -1,4 +1,4 @@
-package com.uslive.rabyks.controllers.websocket;
+package com.uslive.rabyks.controllers.sockets;
 
 import java.net.ServerSocket;
 import java.net.Socket;
