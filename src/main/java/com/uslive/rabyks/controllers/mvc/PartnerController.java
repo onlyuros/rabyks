@@ -1,6 +1,5 @@
 package com.uslive.rabyks.controllers.mvc;
 
-import java.sql.Timestamp;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -68,7 +67,7 @@ public class PartnerController {
 	public List<Partner> getLatestPartners(@RequestParam(value="timestamp") String createdAt) {
 	
 		try { 
-			return partnerRepo.findByCreatedAtGreaterThan(Timestamp.valueOf(createdAt));
+			return partnerRepo.findByCreatedAtGreaterThan(Long.parseLong(createdAt));
 		} catch (Exception e) {
 			log.error("getLatestPartners error! ", e.getMessage());
 			return null;

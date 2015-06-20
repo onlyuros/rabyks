@@ -27,8 +27,8 @@ public class Partner implements Serializable {
 	private String name;
 	private int type;
 	private String workingHours;
-	private Timestamp createdAt;
-	private Timestamp modifiedAt;
+	private Long createdAt;
+	private Long modifiedAt;
 	private List<User> users1;
 	private List<User> users2;
 
@@ -164,20 +164,20 @@ public class Partner implements Serializable {
 	}
 
 	@Column(name="created_at", nullable=false)
-	public Timestamp getCreatedAt()  {
+	public Long getCreatedAt()  {
 		return this.createdAt;
 	}
 
-	public void setCreatedAt(Timestamp createdAt) {
+	public void setCreatedAt(Long createdAt) {
 		this.createdAt = createdAt;
 	}
 	
 	@Column(name="modified_at")
-	public Timestamp getModifiedAt()  {
+	public Long getModifiedAt()  {
 		return this.modifiedAt;
 	}
 
-	public void setModifiedAt(Timestamp modifiedAt) {
+	public void setModifiedAt(Long modifiedAt) {
 		this.modifiedAt = modifiedAt;
 	}
 	
