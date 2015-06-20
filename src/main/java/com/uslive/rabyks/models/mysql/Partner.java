@@ -1,11 +1,17 @@
 package com.uslive.rabyks.models.mysql;
 
 import java.io.Serializable;
-
-import javax.persistence.*;
-
-import java.sql.Timestamp;
 import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 
 
 /**
@@ -38,7 +44,7 @@ public class Partner implements Serializable {
 	public Partner(int id, String address, String details,
 			String galeryImg1Url, String galeryImg2Url, String galeryImg3Url,
 			String layoutImgUrl, String logoUrl, String name, int type,
-			String workingHours) {
+			String workingHours, Long createdAt, Long modifiedAt) {
 		this.id = id;
 		this.address = address;
 		this.details = details;
@@ -50,6 +56,8 @@ public class Partner implements Serializable {
 		this.name = name;
 		this.type = type;
 		this.workingHours = workingHours;
+		this.createdAt = createdAt;
+		this.modifiedAt = modifiedAt;
 	}
 
 	@Id
