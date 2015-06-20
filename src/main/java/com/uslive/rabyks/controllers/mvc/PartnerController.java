@@ -62,9 +62,9 @@ public class PartnerController {
 		}
 	}
 	
-	@RequestMapping(value="/getLatestPartners", method=RequestMethod.GET)
+	@RequestMapping(value="/getLatestPartners/{timestamp}", method=RequestMethod.GET)
 	@ResponseBody
-	public List<Partner> getLatestPartners(@RequestParam(value="timestamp") String createdAt) {
+	public List<Partner> getLatestPartners(@PathVariable(value="timestamp") String createdAt) {
 		System.out.println("USO LI SI");
 		try { 
 			return partnerRepo.findByCreatedAtGreaterThan(Long.parseLong(createdAt));
