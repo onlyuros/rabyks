@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.uslive.rabyks.models.mysql.Partner;
@@ -37,6 +36,18 @@ public class PartnerController {
 		}
 	} 
 	
+	@RequestMapping(value="/getPartner/{name}", method=RequestMethod.GET)
+	@ResponseBody
+	public Partner getPartnerByName(@PathVariable("name") String name) {
+		
+		try {
+			return partnerRepo.findByName(name);
+		} catch (Exception e) {
+			log.error("getPartnerById error: ", e.getMessage());
+			return null;
+		}
+	}
+	
 	@RequestMapping(value="/getPartners", method=RequestMethod.GET)
 	@ResponseBody
 	public List<Partner> getPartners() {
@@ -47,21 +58,7 @@ public class PartnerController {
 			return null;
 		}
 	}
-	
-	@RequestMapping(value="/getPartner/{name}", method=RequestMethod.GET)
-	@ResponseBody
-	public String getPartnerByName(@PathVariable("name") String name) {
-		
-		Partner partner = null;
-		try {
-			partner = partnerRepo.findByName(name);
-			return partner.toString(); 
-		} catch (Exception e) {
-			log.error("getPartnerById error: ", e.getMessage());
-			return partner.toString();
-		}
-	}
-	
+
 	@RequestMapping(value="/getLatestPartners/{timestamp}", method=RequestMethod.GET)
 	@ResponseBody
 	public List<Partner> getLatestPartners(@PathVariable(value="timestamp") String createdAt) {

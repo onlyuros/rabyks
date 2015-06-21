@@ -12,7 +12,8 @@ import com.uslive.rabyks.models.mysql.Partner;
 @Repository
 public interface PartnerRepository extends JpaRepository<Partner, Integer>{
 	
-	public Partner findByName(String name);
+	@Query(value="select new Partner(id, address, details, galeryImg1Url, galeryImg2Url, galeryImg3Url, layoutImgUrl, logoUrl, name, type, workingHours, createdAt, modifiedAt) from Partner p where p.name = :name")
+	public Partner findByName(@Param("name") String name);
 
 	@Query(value="select new Partner(id, address, details, galeryImg1Url, galeryImg2Url, galeryImg3Url, layoutImgUrl, logoUrl, name, type, workingHours, createdAt, modifiedAt) from Partner")
 	public List<Partner> findAll();
