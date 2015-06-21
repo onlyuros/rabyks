@@ -101,7 +101,8 @@ public class ClubSocketThread extends Thread {
 							objekatZaSlanje.put("price", obj.getPrice());
 							objekatZaSlanje.put("availability", obj.isAvailability());
 							objekatZaSlanje.put("numberOfSeats", obj.getNumberOfSeats());
-							objekatZaSlanje.put("coordinates", obj.getCoordinates());
+							objekatZaSlanje.put("coordinateX", obj.getCoordinateX());
+							objekatZaSlanje.put("coordinateY", obj.getCoordinateY());
 							nizObjekataZaSlanje.put(objekatZaSlanje);
 						}
 						out.println(nizObjekataZaSlanje);

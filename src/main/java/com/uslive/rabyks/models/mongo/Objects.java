@@ -1,6 +1,5 @@
 package com.uslive.rabyks.models.mongo;
 
-import java.util.ArrayList;
 
 
 
@@ -13,13 +12,14 @@ public class Objects {
 	private float price;
 	private boolean availability;
 	private int numberOfSeats;
-	private ArrayList<Coordinates> coordinates;
+	private int coordinateX;
+	private int coordinateY;
 	
 	public Objects() {}
 	
 	public Objects(int objectId, String type, int timeOut,
 			float price, boolean availability, int numberOfSeats,
-			ArrayList<Coordinates> coordinates) {
+			int coordinateX, int coordinateY) {
 		super();
 		this.objectId = objectId;
 		this.type = type;
@@ -27,7 +27,8 @@ public class Objects {
 		this.price = price;
 		this.availability = availability;
 		this.numberOfSeats = numberOfSeats;
-		this.coordinates = coordinates;
+		this.coordinateX = coordinateX;
+		this.coordinateY = coordinateY;
 	}
 	
 	public int getObjectId() {
@@ -66,10 +67,16 @@ public class Objects {
 	public void setNumberOfSeats(int numberOfSeats) {
 		this.numberOfSeats = numberOfSeats;
 	}
-	public ArrayList<Coordinates> getCoordinates() {
-		return coordinates;
+	public int getCoordinateX() {
+		return coordinateX;
 	}
-	public void setCoordinates(ArrayList<Coordinates> coordinates) {
-		this.coordinates = coordinates;
+	public void setCoordinateX(int coordinateX) {
+		this.coordinateX = coordinateX;
+	}
+	public int getCoordinateY() {
+		return coordinateY;
+	}
+	public void setCoordinateY(int coordinateY) {
+		this.coordinateY = coordinateY;
 	}
 }
