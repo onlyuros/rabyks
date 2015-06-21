@@ -26,6 +26,18 @@ public class PartnerObjectSetup {
     
     List<Objects> objects;
 
+    public PartnerObjectSetup () {}
+    
+    public PartnerObjectSetup (String id, int partnerId, int defaultTableSeatCount, int defaultSepareSeatCount, int defaultBarseatSeatCount, int defaultStandSeatCount, List<Objects> objects) {
+    	this.id = id;
+    	this.partnerId = partnerId;
+    	this.defaultTableSeatCount = defaultTableSeatCount;
+    	this.defaultSepareSeatCount = defaultSepareSeatCount;
+    	this.defaultBarseatSeatCount = defaultBarseatSeatCount;
+    	this.defaultStandSeatCount = defaultStandSeatCount;
+    	this.objects = objects;
+    }
+    
 	public String getId() {
 		return id;
 	}
