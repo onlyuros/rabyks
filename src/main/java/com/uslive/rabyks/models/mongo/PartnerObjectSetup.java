@@ -13,7 +13,6 @@ public class PartnerObjectSetup {
 	@Id
     private String id;
 
-	@Indexed(unique=true)
     private int partnerId;
 
     private int defaultTableSeatCount;
