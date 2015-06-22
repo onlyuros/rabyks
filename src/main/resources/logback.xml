@@ -3,14 +3,6 @@
  
 	<property name="DEV_HOME" value="c:/rabyks" />
  
- 
-	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
-		<layout class="ch.qos.logback.classic.PatternLayout">
-			<Pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n</Pattern>
-		</layout>
-	</appender>
- 
- 
 	<appender name="ALL" class="ch.qos.logback.core.rolling.RollingFileAppender">
 		<file>${DEV_HOME}/error.log</file>
 		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
@@ -24,11 +16,8 @@
 		</rollingPolicy>
 	</appender>
  
-	<logger level="error" additivity="false">
+	<root level="error">
 		<appender-ref ref="ALL" />
-	</logger>
-	<root level="info">
-		<appender-ref ref="STDOUT" />
 	</root>
  
 </configuration>
