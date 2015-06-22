@@ -24,10 +24,10 @@
 		</rollingPolicy>
 	</appender>
  
-	<logger level="info" additivity="false">
+	<logger level="error" additivity="false">
 		<appender-ref ref="ALL" />
 	</logger>
-	<root>
+	<root level="info">
 		<appender-ref ref="STDOUT" />
 	</root>
  
