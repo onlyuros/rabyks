@@ -119,7 +119,7 @@ public class ClubSocketThread extends Thread {
                     	for(ClubNameSocket cns : SharedLists.clubNameSocketList) {
                 				if(partnerId == cns.getPartnerId()) {
 		    	            		PrintWriter outA = new PrintWriter(cns.getSocket().getOutputStream(), true);
-		    	            		outA.println(objectId);
+		    	            		outA.println("rezervacija:" + objectId);
                 				}
                     	}
                 	}
@@ -150,7 +150,7 @@ public class ClubSocketThread extends Thread {
                     	for(ClubNameSocket cns : SharedLists.clubNameSocketList) {
                 				if(partnerId == cns.getPartnerId()) {
 		    	            		PrintWriter outA = new PrintWriter(cns.getSocket().getOutputStream(), true);
-		    	            		outA.println(objectId);
+		    	            		outA.println("oslobodi:" + objectId);
                 				}
                     	}
                 	}
