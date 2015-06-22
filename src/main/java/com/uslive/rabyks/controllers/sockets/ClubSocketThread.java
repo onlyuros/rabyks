@@ -1,6 +1,7 @@
 package com.uslive.rabyks.controllers.sockets;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
@@ -157,8 +158,10 @@ public class ClubSocketThread extends Thread {
                 }
             }
 			out.println("bye");
+        } catch (IOException e) {
+        	log.error("ClubSocketThread IOException! ", e);
         } catch (Exception e) {
-        	log.error("ClubSocketThread error! ", e.getLocalizedMessage());
+        	log.error("ClubSocketThread Exception! ", e);
         } finally {
         	try {
 	        	socket.close();  
