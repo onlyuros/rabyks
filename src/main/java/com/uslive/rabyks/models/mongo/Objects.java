@@ -1,9 +1,5 @@
 package com.uslive.rabyks.models.mongo;
 
-
-
-
-
 public class Objects {
 
 	private int objectId;
