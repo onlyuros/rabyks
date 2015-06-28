@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.json.JSONArray;
@@ -119,6 +120,7 @@ public class ClubSocketThread extends Thread {
                 	synchronized(SharedLists.clubNameSocketList) {
                     	for(ClubNameSocket cns : SharedLists.clubNameSocketList) {
                 				if(partnerId == cns.getPartnerId()) {
+                					System.out.println("PISES SVIMA: " + objectId);
 		    	            		PrintWriter outA = new PrintWriter(cns.getSocket().getOutputStream(), true);
 		    	            		outA.println("rezervacija:" + objectId);
                 				}
@@ -143,12 +145,21 @@ public class ClubSocketThread extends Thread {
                 	
                 	synchronized (SharedLists.listaRezervacija) {
                 		System.out.println("USAO U SINH listRezervacija");
-                		for(Rezervisan rez : SharedLists.listaRezervacija) {
-	                		if(rez.getPartnerId() == partnerId && rez.getObjectId() == objectId) {
-	                			System.out.println("OSLOBODIO REZERVACIJU");
-	                			SharedLists.listaRezervacija.remove(rez);
-	                		}
+                		
+                		for(Iterator<Rezervisan> it = SharedLists.listaRezervacija.iterator(); it.hasNext();) {
+            				Rezervisan rez = it.next();
+            				if(rez.getPartnerId() == partnerId && rez.getObjectId() == objectId) {
+            					System.out.println("OSLOBODIO REZERVACIJU");
+            					SharedLists.listaRezervacija.remove(rez);
+            				}
                 		}
+                		
+//                		for(Rezervisan rez : SharedLists.listaRezervacija) {
+//	                		if(rez.getPartnerId() == partnerId && rez.getObjectId() == objectId) {
+//	                			System.out.println("OSLOBODIO REZERVACIJU");
+//	                			SharedLists.listaRezervacija.remove(rez);
+//	                		}
+//                		}
 					}
                 	
                 	synchronized(SharedLists.clubNameSocketList) {
