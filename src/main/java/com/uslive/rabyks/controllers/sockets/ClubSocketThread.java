@@ -32,6 +32,8 @@ public class ClubSocketThread extends Thread {
 
 	private Socket socket = null;
 	
+	private int partnerId;
+	
 	private static Logger log = LoggerFactory.getLogger(ClubSocketThread.class);
 	
 	@Autowired
@@ -63,7 +65,7 @@ public class ClubSocketThread extends Thread {
             	inputLine = in.readLine();
             	String[] data = inputLine.split(":");
             	String command = data[0];
-            	int partnerId = Integer.parseInt(data[1]);
+            	partnerId = Integer.parseInt(data[1]);
             	
             	if (command.equals("bye")) {
             		synchronized(SharedLists.clubNameSocketList) {
@@ -160,13 +162,6 @@ public class ClubSocketThread extends Thread {
             					System.out.println("OSLOBODIO REZERVACIJU");
             				}
                 		}
-                		
-//                		for(Rezervisan rez : SharedLists.listaRezervacija) {
-//	                		if(rez.getPartnerId() == partnerId && rez.getObjectId() == objectId) {
-//	                			System.out.println("OSLOBODIO REZERVACIJU");
-//	                			SharedLists.listaRezervacija.remove(rez);
-//	                		}
-//                		}
 					}
                 	
                 	synchronized(SharedLists.clubNameSocketList) {
@@ -188,6 +183,15 @@ public class ClubSocketThread extends Thread {
         	log.error("ClubSocketThread Exception! ", e);
         } finally {
         	try {
+        		synchronized(SharedLists.clubNameSocketList) {
+        			for(Iterator<ClubNameSocket> it = SharedLists.clubNameSocketList.iterator(); it.hasNext();) {
+        				ClubNameSocket cns = it.next();
+        				if(cns.getPartnerId() == partnerId && cns.getSocket().equals(socket)) {
+        					it.remove();
+        					System.out.println("IZBACIO SOKET IZ LISTE SOKETA ALI U FINALLY");
+        				}
+            		}
+        		}
 	        	socket.close();  
         	} catch (Exception e) {
         		log.error("ClubSocketThread socket close error! ", e.getMessage());

@@ -44,14 +44,14 @@ public class PartnerObjectSetupController {
 	@ResponseStatus(value = HttpStatus.OK)
 	public void updatePartnerObjectSetup(HttpServletRequest request) {
 		try {
-		PartnerObjectSetup pos = (PartnerObjectSetup) request.getAttribute("partnerObjectSetup");
-		PartnerObjectSetup posOld = posRepo.findByPartnerId(pos.getPartnerId());
-		posOld.setDefaultBarseatSeatCount(pos.getDefaultBarseatSeatCount());
-		posOld.setDefaultSepareSeatCount(pos.getDefaultSepareSeatCount());
-		posOld.setDefaultStandSeatCount(pos.getDefaultStandSeatCount());
-		posOld.setDefaultTableSeatCount(pos.getDefaultTableSeatCount());
-		posOld.setObjects(pos.getObjects());
-		posRepo.save(posOld); 
+			PartnerObjectSetup pos = (PartnerObjectSetup) request.getAttribute("partnerObjectSetup");
+			PartnerObjectSetup posOld = posRepo.findByPartnerId(pos.getPartnerId());
+			posOld.setDefaultBarseatSeatCount(pos.getDefaultBarseatSeatCount());
+			posOld.setDefaultSepareSeatCount(pos.getDefaultSepareSeatCount());
+			posOld.setDefaultStandSeatCount(pos.getDefaultStandSeatCount());
+			posOld.setDefaultTableSeatCount(pos.getDefaultTableSeatCount());
+			posOld.setObjects(pos.getObjects());
+			posRepo.save(posOld); 
 		} catch (Exception e) {
 			log.error("updatePartnerObjectSetup error! ", e.getMessage());
 		}
