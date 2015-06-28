@@ -149,8 +149,8 @@ public class ClubSocketThread extends Thread {
                 		for(Iterator<Rezervisan> it = SharedLists.listaRezervacija.iterator(); it.hasNext();) {
             				Rezervisan rez = it.next();
             				if(rez.getPartnerId() == partnerId && rez.getObjectId() == objectId) {
-            					System.out.println("OSLOBODIO REZERVACIJU");
             					SharedLists.listaRezervacija.remove(rez);
+            					System.out.println("OSLOBODIO REZERVACIJU");
             				}
                 		}
                 		
