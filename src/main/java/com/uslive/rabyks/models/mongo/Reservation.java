@@ -17,6 +17,8 @@ public class Reservation {
 	
 	private String timeOfReservation;
 
+	private String reservationBy;
+	
 	public String getId() {
 		return id;
 	}
@@ -55,5 +57,13 @@ public class Reservation {
 
 	public void setTimeOfReservation(String timeOfReservation) {
 		this.timeOfReservation = timeOfReservation;
+	}
+
+	public String getReservationBy() {
+		return reservationBy;
+	}
+
+	public void setReservationBy(String reservationBy) {
+		this.reservationBy = reservationBy;
 	}
 }

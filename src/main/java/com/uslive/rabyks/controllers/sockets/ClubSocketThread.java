@@ -122,7 +122,7 @@ public class ClubSocketThread extends Thread {
                 	String objectId = data[2];
                 	String personCount = data[3];
                 	String timeOfReservation = data[4];
-                	
+                	String reservationBy = data[5];
                 	synchronized(SharedLists.clubNameSocketList) {
                     	for(ClubNameSocket cns : SharedLists.clubNameSocketList) {
                 				if(partnerId == cns.getPartnerId()) {
@@ -142,6 +142,7 @@ public class ClubSocketThread extends Thread {
                 	res.setObjectId(objectId);
                 	res.setPersonCount(personCount);
                 	res.setTimeOfReservation(timeOfReservation);
+                	res.setReservationBy(reservationBy);
                 	rr.save(res);
                 }
             	
