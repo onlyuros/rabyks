@@ -67,7 +67,13 @@ public class ClubSocketThread extends Thread {
             	
             	if (command.equals("bye")) {
             		synchronized(SharedLists.clubNameSocketList) {
-            			SharedLists.clubNameSocketList.remove(new ClubNameSocket(partnerId, socket));
+            			for(Iterator<ClubNameSocket> it = SharedLists.clubNameSocketList.iterator(); it.hasNext();) {
+            				ClubNameSocket cns = it.next();
+            				if(cns.getPartnerId() == partnerId && cns.getSocket().equals(socket)) {
+            					it.remove();
+            					System.out.println("IZBACIO SOKET IZ LISTE SOKETA");
+            				}
+                		}
             		}
             		break;
             	}
