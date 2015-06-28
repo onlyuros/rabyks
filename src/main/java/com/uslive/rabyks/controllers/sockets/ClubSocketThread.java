@@ -138,20 +138,25 @@ public class ClubSocketThread extends Thread {
                 }
             	
                 else if (command.equals("oslobodi")) {
+                	System.out.println("USAO U OSLOBODI");
                 	int objectId = Integer.valueOf(data[2]);
                 	
                 	synchronized (SharedLists.listaRezervacija) {
+                		System.out.println("USAO U SINH listRezervacija");
                 		for(Rezervisan rez : SharedLists.listaRezervacija) {
 	                		if(rez.getPartnerId() == partnerId && rez.getObjectId() == objectId) {
+	                			System.out.println("OSLOBODIO REZERVACIJU");
 	                			SharedLists.listaRezervacija.remove(rez);
 	                		}
                 		}
 					}
                 	
                 	synchronized(SharedLists.clubNameSocketList) {
+                		System.out.println("USAO U SINH clubNameSocketList");
                     	for(ClubNameSocket cns : SharedLists.clubNameSocketList) {
                 				if(partnerId == cns.getPartnerId()) {
 		    	            		PrintWriter outA = new PrintWriter(cns.getSocket().getOutputStream(), true);
+		    	            		System.out.println("PISE NA SVE SOCKETE");
 		    	            		outA.println("oslobodi:" + objectId);
                 				}
                     	}
