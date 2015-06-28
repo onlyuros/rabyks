@@ -1,5 +1,7 @@
 package com.uslive.rabyks.controllers.mvc;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+import com.uslive.rabyks.models.mysql.Role;
 import com.uslive.rabyks.models.mysql.User;
+import com.uslive.rabyks.repositories.mysql.RoleRepository;
 import com.uslive.rabyks.repositories.mysql.UserRepository;
 
 @Controller
@@ -22,6 +26,9 @@ public class UserController {
 	
 	@Autowired
 	private UserRepository userRepo;
+	
+	@Autowired
+	private RoleRepository roleRepo;
 	
 	@RequestMapping(value="/createUser", method=RequestMethod.POST)
 	@ResponseStatus(value = HttpStatus.OK)
@@ -46,6 +53,32 @@ public class UserController {
 		} catch (Exception e) {
 			log.error("getUser error: ", e.getMessage());
 			return user;
+		}
+	}
+	
+	@RequestMapping(value="/getUserRoles/{id}", method=RequestMethod.GET)
+	@ResponseBody
+	public String getUserRoles(@PathVariable("id") int id) {
+		
+		int r;
+		String roleS = "";
+		
+		try {
+			List<Role> roles = roleRepo.findByUserId(id);
+			for(Role role : roles) {
+				r = role.getRole();
+				if(r == 3) {
+					roleS = "admin";
+					break;
+				} else if (r == 2) {
+					roleS = "konobar";
+				}
+			}
+			
+			return roleS;
+		} catch (Exception e) {
+			log.error("getUserById error: ", e);
+			return roleS;
 		}
 	}
 }

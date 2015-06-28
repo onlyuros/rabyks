@@ -138,13 +138,14 @@ public class ClubSocketThread extends Thread {
                 }
             	
                 else if (command.equals("oslobodi")) {
-                	String objectId = data[2];
+                	int objectId = Integer.valueOf(data[2]);
                 	
                 	synchronized (SharedLists.listaRezervacija) {
-                		Rezervisan rez = new Rezervisan();
-                		rez.setPartnerId(partnerId);
-                		rez.setObjectId(Integer.parseInt(objectId));
-						SharedLists.listaRezervacija.remove(rez);
+                		for(Rezervisan rez : SharedLists.listaRezervacija) {
+	                		if(rez.getPartnerId() == partnerId && rez.getObjectId() == objectId) {
+	                			SharedLists.listaRezervacija.remove(rez);
+	                		}
+                		}
 					}
                 	
                 	synchronized(SharedLists.clubNameSocketList) {
