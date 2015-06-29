@@ -1,5 +1,6 @@
 package com.uslive.rabyks.repositories.mysql;
 		
+import java.math.BigInteger;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -19,5 +20,5 @@ public interface PartnerRepository extends JpaRepository<Partner, Integer>{
 	public List<Partner> findAll();
 	
 	@Query(value="select new Partner(id, name, address, number, logoUrl, layoutImgUrl, galeryImg1Url, galeryImg2Url, galeryImg3Url, type, details, workingHours, createdAt, modifiedAt) from Partner p where p.createdAt>=:createdAt")
-	public List<Partner> findByCreatedAtGreaterThan(@Param("createdAt") Long createdAt);
+	public List<Partner> findByCreatedAtGreaterThan(@Param("createdAt") BigInteger createdAt);
 }

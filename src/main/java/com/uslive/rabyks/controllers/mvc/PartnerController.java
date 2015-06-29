@@ -1,5 +1,6 @@
 package com.uslive.rabyks.controllers.mvc;
 
+import java.math.BigInteger;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -61,12 +62,12 @@ public class PartnerController {
 
 	@RequestMapping(value="/getLatestPartners/{createdAt}", method=RequestMethod.GET)
 	@ResponseBody
-	public List<Partner> getLatestPartners(@PathVariable("createdAt") String createdAt) {
+	public List<Partner> getLatestPartners(@PathVariable("createdAt") BigInteger createdAt) {
 		System.out.println("USO LI SI");
 		try { 
-			return partnerRepo.findByCreatedAtGreaterThan(Long.parseLong(createdAt));
+			return partnerRepo.findByCreatedAtGreaterThan(createdAt);
 		} catch (Exception e) {
-			log.error("getLatestPartners error! ", e.getMessage());
+			log.error(e.getMessage());
 			return null;
 		}
 	}
