@@ -19,6 +19,6 @@ public interface PartnerRepository extends JpaRepository<Partner, Integer>{
 	@Query(value="select new Partner(id, name, address, number, logoUrl, layoutImgUrl, galeryImg1Url, galeryImg2Url, galeryImg3Url, type, details, workingHours, createdAt, modifiedAt) from Partner")
 	public List<Partner> findAll();
 	
-	@Query(value="select new Partner(id, name, address, number, logoUrl, layoutImgUrl, galeryImg1Url, galeryImg2Url, galeryImg3Url, type, details, workingHours, createdAt, modifiedAt) from Partner p where p.createdAt>=:createdAt")
+	@Query(value="select new Partner(id, name, address, number, logoUrl, layoutImgUrl, galeryImg1Url, galeryImg2Url, galeryImg3Url, type, details, workingHours, createdAt, modifiedAt) from Partner p where p.createdAt>:createdAt")
 	public List<Partner> findByCreatedAtGreaterThan(@Param("createdAt") BigInteger createdAt);
 }
