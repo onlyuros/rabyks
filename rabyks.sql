@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 29, 2015 at 08:48 PM
+-- Generation Time: Jun 29, 2015 at 09:03 PM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -43,7 +43,7 @@ CREATE TABLE IF NOT EXISTS `partners` (
   `details` varchar(100) DEFAULT NULL,
   `working_hours` varchar(100) NOT NULL,
   `created_at` bigint(20) NOT NULL,
-  `modified_at` bigint(20) DEFAULT NULL,
+  `modified_at` bigint(20) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
@@ -52,10 +52,10 @@ CREATE TABLE IF NOT EXISTS `partners` (
 --
 
 INSERT INTO `partners` (`id`, `name`, `address`, `number`, `logo_url`, `layout_img_url`, `galery_img_1_url`, `galery_img_2_url`, `galery_img_3_url`, `type`, `details`, `working_hours`, `created_at`, `modified_at`) VALUES
-(1, 'drugstore', 'Mali Simanovci 200', '987654321', 'https://s3-us-west-2.amazonaws.com/klubovi/drugstore1.jpg', 'https://s3-us-west-2.amazonaws.com/klubovi/drugstoreLayout.png', 'https://s3-us-west-2.amazonaws.com/klubovi/drugstore2.jpg', 'https://s3-us-west-2.amazonaws.com/klubovi/drugstore3.jpg', 'https://s3-us-west-2.amazonaws.com/klubovi/drugstore4.jpg', 1, 'Dodjite da prskamo zajedno', '22-06', 692299830, NULL),
-(2, 'terrace', 'Idi mi dodji mi 3', '123456789', 'https://s3-us-west-2.amazonaws.com/klubovi/terrace+(1).jpg', 'https://s3-us-west-2.amazonaws.com/klubovi/terrace+(2).jpg', 'https://s3-us-west-2.amazonaws.com/klubovi/terrace+(3).jpg', 'https://s3-us-west-2.amazonaws.com/klubovi/terrace+(4).jpg', 'https://s3-us-west-2.amazonaws.com/klubovi/terraceLayout.png', 2, 'Ovo ce da glumi nesto drugo', '16-22', 628191030, NULL),
+(1, 'drugstore', 'Mali Simanovci 200', '987654321', 'https://s3-us-west-2.amazonaws.com/klubovi/drugstore1.jpg', 'https://s3-us-west-2.amazonaws.com/klubovi/drugstoreLayout.png', 'https://s3-us-west-2.amazonaws.com/klubovi/drugstore2.jpg', 'https://s3-us-west-2.amazonaws.com/klubovi/drugstore3.jpg', 'https://s3-us-west-2.amazonaws.com/klubovi/drugstore4.jpg', 1, 'Dodjite da prskamo zajedno', '22-06', 692299830, 0),
+(2, 'terrace', 'Idi mi dodji mi 3', '123456789', 'https://s3-us-west-2.amazonaws.com/klubovi/terrace+(1).jpg', 'https://s3-us-west-2.amazonaws.com/klubovi/terrace+(2).jpg', 'https://s3-us-west-2.amazonaws.com/klubovi/terrace+(3).jpg', 'https://s3-us-west-2.amazonaws.com/klubovi/terrace+(4).jpg', 'https://s3-us-west-2.amazonaws.com/klubovi/terraceLayout.png', 2, 'Ovo ce da glumi nesto drugo', '16-22', 628191030, 0),
 (3, 'djole', 'adresa', '123654789', 'https://s3-us-west-2.amazonaws.com/klubovi/dzukac+(1).jpg', 'https://s3-us-west-2.amazonaws.com/klubovi/dzukac+(2).jpg', ' https://s3-us-west-2.amazonaws.com/klubovi/dzukac+(3).jpg', 'https://s3-us-west-2.amazonaws.com/klubovi/dzukac+(4).jpg', 'https://s3-us-west-2.amazonaws.com/klubovi/dzukacLayout.png', 1, 'detalji', '22-24', 1434823440, 0),
-(4, 'mountain', 'planinska 5', '789654123', 'https://s3-us-west-2.amazonaws.com/klubovi/mountain+(1).jpg', 'https://s3-us-west-2.amazonaws.com/klubovi/mountain+(2).jpg', 'https://s3-us-west-2.amazonaws.com/klubovi/mountain+(3).jpg', 'https://s3-us-west-2.amazonaws.com/klubovi/dzukac+(4).jpg', 'https://s3-us-west-2.amazonaws.com/klubovi/dzukacLayout.png', 1, 'detaji detalji', '08-24', 1434894801, 0);
+(4, 'mountain', 'planinska 5', '789654123', ' https://s3-us-west-2.amazonaws.com/klubovi/mountain+(1).jpg', 'https://s3-us-west-2.amazonaws.com/klubovi/mountain+(2).jpg', 'https://s3-us-west-2.amazonaws.com/klubovi/mountain+(3).jpg', ' https://s3-us-west-2.amazonaws.com/klubovi/dzukac+(4).jpg', ' https://s3-us-west-2.amazonaws.com/klubovi/dzukacLayout.png', 1, 'detaji detalji', '08-24', 1434894801, 0);
 
 -- --------------------------------------------------------
 
