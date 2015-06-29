@@ -12,12 +12,12 @@ import com.uslive.rabyks.models.mysql.Partner;
 @Repository
 public interface PartnerRepository extends JpaRepository<Partner, Integer>{
 	
-	@Query(value="select new Partner(id, address, details, galeryImg1Url, galeryImg2Url, galeryImg3Url, layoutImgUrl, logoUrl, name, type, workingHours, createdAt, modifiedAt) from Partner p where p.name = :name")
+	@Query(value="select new Partner(id, number, address, details, galeryImg1Url, galeryImg2Url, galeryImg3Url, layoutImgUrl, logoUrl, name, type, workingHours, createdAt, modifiedAt) from Partner p where p.name = :name")
 	public Partner findByName(@Param("name") String name);
 
-	@Query(value="select new Partner(id, address, details, galeryImg1Url, galeryImg2Url, galeryImg3Url, layoutImgUrl, logoUrl, name, type, workingHours, createdAt, modifiedAt) from Partner")
+	@Query(value="select new Partner(id, number, address, details, galeryImg1Url, galeryImg2Url, galeryImg3Url, layoutImgUrl, logoUrl, name, type, workingHours, createdAt, modifiedAt) from Partner")
 	public List<Partner> findAll();
 	
-	@Query(value="select new Partner(id, address, details, galeryImg1Url, galeryImg2Url, galeryImg3Url, layoutImgUrl, logoUrl, name, type, workingHours, createdAt, modifiedAt) from Partner p where p.createdAt>=:createdAt")
+	@Query(value="select new Partner(id, number, address, details, galeryImg1Url, galeryImg2Url, galeryImg3Url, layoutImgUrl, logoUrl, name, type, workingHours, createdAt, modifiedAt) from Partner p where p.createdAt>=:createdAt")
 	public List<Partner> findByCreatedAtGreaterThan(@Param("createdAt") Long createdAt);
 }

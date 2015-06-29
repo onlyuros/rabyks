@@ -20,20 +20,7 @@ public class Role implements Serializable {
 
 	public Role() {
 	}
-	
-	public Role(int role, int userId) {
-		super();
-		this.role = role;
-		this.userId = userId;
-	}
 
-	public Role(int id, int role, int userId, User user) {
-		super();
-		this.id = id;
-		this.role = role;
-		this.userId = userId;
-		this.user = user;
-	}
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)

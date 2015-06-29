@@ -1,17 +1,11 @@
 package com.uslive.rabyks.models.mysql;
 
 import java.io.Serializable;
-import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
+
+import java.math.BigInteger;
+import java.util.List;
 
 
 /**
@@ -20,44 +14,51 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="partners")
+@NamedQuery(name="Partner.findAll", query="SELECT p FROM Partner p")
 public class Partner implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private int id;
+	private String number;
 	private String address;
+	private BigInteger createdAt;
 	private String details;
 	private String galeryImg1Url;
 	private String galeryImg2Url;
 	private String galeryImg3Url;
 	private String layoutImgUrl;
 	private String logoUrl;
+	private BigInteger modifiedAt;
 	private String name;
 	private int type;
 	private String workingHours;
-	private Long createdAt;
-	private Long modifiedAt;
 	private List<User> users1;
 	private List<User> users2;
 
 	public Partner() {
 	}
 
-	public Partner(int id, String address, String details,
-			String galeryImg1Url, String galeryImg2Url, String galeryImg3Url,
-			String layoutImgUrl, String logoUrl, String name, int type,
-			String workingHours, Long createdAt, Long modifiedAt) {
+	public Partner(int id, String number, String address, BigInteger createdAt,
+			String details, String galeryImg1Url, String galeryImg2Url,
+			String galeryImg3Url, String layoutImgUrl, String logoUrl,
+			BigInteger modifiedAt, String name, int type, String workingHours,
+			List<User> users1, List<User> users2) {
+		super();
 		this.id = id;
+		this.number = number;
 		this.address = address;
+		this.createdAt = createdAt;
 		this.details = details;
 		this.galeryImg1Url = galeryImg1Url;
 		this.galeryImg2Url = galeryImg2Url;
 		this.galeryImg3Url = galeryImg3Url;
 		this.layoutImgUrl = layoutImgUrl;
 		this.logoUrl = logoUrl;
+		this.modifiedAt = modifiedAt;
 		this.name = name;
 		this.type = type;
 		this.workingHours = workingHours;
-		this.createdAt = createdAt;
-		this.modifiedAt = modifiedAt;
+		this.users1 = users1;
+		this.users2 = users2;
 	}
 
 	@Id
@@ -72,6 +73,16 @@ public class Partner implements Serializable {
 	}
 
 
+	@Column(name="number", length=20)
+	public String get_number() {
+		return this.number;
+	}
+
+	public void set_number(String number) {
+		this.number = number;
+	}
+
+
 	@Column(nullable=false, length=100)
 	public String getAddress() {
 		return this.address;
@@ -79,6 +90,16 @@ public class Partner implements Serializable {
 
 	public void setAddress(String address) {
 		this.address = address;
+	}
+
+
+	@Column(name="created_at", nullable=false)
+	public BigInteger getCreatedAt() {
+		return this.createdAt;
+	}
+
+	public void setCreatedAt(BigInteger createdAt) {
+		this.createdAt = createdAt;
 	}
 
 
@@ -142,6 +163,16 @@ public class Partner implements Serializable {
 	}
 
 
+	@Column(name="modified_at")
+	public BigInteger getModifiedAt() {
+		return this.modifiedAt;
+	}
+
+	public void setModifiedAt(BigInteger modifiedAt) {
+		this.modifiedAt = modifiedAt;
+	}
+
+
 	@Column(nullable=false, length=30)
 	public String getName() {
 		return this.name;
@@ -171,24 +202,7 @@ public class Partner implements Serializable {
 		this.workingHours = workingHours;
 	}
 
-	@Column(name="created_at", nullable=false)
-	public Long getCreatedAt()  {
-		return this.createdAt;
-	}
 
-	public void setCreatedAt(Long createdAt) {
-		this.createdAt = createdAt;
-	}
-	
-	@Column(name="modified_at")
-	public Long getModifiedAt()  {
-		return this.modifiedAt;
-	}
-
-	public void setModifiedAt(Long modifiedAt) {
-		this.modifiedAt = modifiedAt;
-	}
-	
 	//bi-directional many-to-many association to User
 	@ManyToMany
 	@JoinTable(
@@ -218,4 +232,5 @@ public class Partner implements Serializable {
 	public void setUsers2(List<User> users2) {
 		this.users2 = users2;
 	}
+
 }

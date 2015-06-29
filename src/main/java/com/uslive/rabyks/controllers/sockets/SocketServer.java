@@ -27,9 +27,9 @@ public class SocketServer implements CommandLineRunner{
 			
 			while(listening) {
 				
-				Socket clubSocket = serverSocket.accept();
-				ClubSocketThread cst = (ClubSocketThread) context.getBean("clubSocketThread", clubSocket);
-	    		cst.start();
+				Socket partnerSocket = serverSocket.accept();
+				PartnerSocketThread pst = (PartnerSocketThread) context.getBean("partnerSocketThread", partnerSocket);
+	    		pst.start();
 	    	}
 			
 	    } catch (Exception e) {

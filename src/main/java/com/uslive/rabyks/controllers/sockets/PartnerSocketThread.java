@@ -28,13 +28,13 @@ import com.uslive.rabyks.repositories.mongo.ReservationsRepository;
 
 @Component
 @Scope("prototype")
-public class ClubSocketThread extends Thread {
+public class PartnerSocketThread extends Thread {
 
 	private Socket socket = null;
 	
 	private int partnerId;
 	
-	private static Logger log = LoggerFactory.getLogger(ClubSocketThread.class);
+	private static Logger log = LoggerFactory.getLogger(PartnerSocketThread.class);
 	
 	@Autowired
 	private ReservationsRepository rr;
@@ -42,11 +42,11 @@ public class ClubSocketThread extends Thread {
 	@Autowired
 	private PartnerObjectSetupRepository posRepo;
 	
-	public ClubSocketThread() {
+	public PartnerSocketThread() {
 		
 	}
 	
-    public ClubSocketThread(Socket socket) {
+    public PartnerSocketThread(Socket socket) {
         super("ClubSocket");
         this.socket = socket;
     }
