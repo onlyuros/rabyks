@@ -40,8 +40,7 @@ public class Partner implements Serializable {
 	public Partner(int id, String number, String address, BigInteger createdAt,
 			String details, String galeryImg1Url, String galeryImg2Url,
 			String galeryImg3Url, String layoutImgUrl, String logoUrl,
-			BigInteger modifiedAt, String name, int type, String workingHours,
-			List<User> users1, List<User> users2) {
+			BigInteger modifiedAt, String name, int type, String workingHours) {
 		super();
 		this.id = id;
 		this.number = number;
@@ -57,8 +56,6 @@ public class Partner implements Serializable {
 		this.name = name;
 		this.type = type;
 		this.workingHours = workingHours;
-		this.users1 = users1;
-		this.users2 = users2;
 	}
 
 	@Id
