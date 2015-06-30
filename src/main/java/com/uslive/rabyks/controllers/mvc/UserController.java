@@ -2,6 +2,9 @@ package com.uslive.rabyks.controllers.mvc;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +19,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.uslive.rabyks.models.mysql.Role;
 import com.uslive.rabyks.models.mysql.User;
-import com.uslive.rabyks.repositories.mysql.RoleRepository;
-import com.uslive.rabyks.repositories.mysql.UserRepository;
+import com.uslive.rabyks.services.UserService;
 
 @Controller
 public class UserController {
@@ -25,17 +27,30 @@ public class UserController {
 	private Logger log = LoggerFactory.getLogger(UserController.class);
 	
 	@Autowired
-	private UserRepository userRepo;
+	private UserService userService;
 	
-	@Autowired
-	private RoleRepository roleRepo;
+	@RequestMapping(value="/login", method=RequestMethod.POST)
+	@ResponseBody
+	public JSONObject login(HttpServletRequest request) {
+
+		JSONObject json = null;
+		
+		try {
+			String email = request.getParameter("email");
+			String password = request.getParameter("password");
+			json = userService.login(email, password);
+		} catch (Exception e) {
+			log.error(e.getMessage());
+		}
+		return json;
+	}
 	
 	@RequestMapping(value="/createUser", method=RequestMethod.POST)
 	@ResponseStatus(value = HttpStatus.OK)
 	public void createUser(@RequestBody User user) {
 
 		try {
-			userRepo.save(user);
+			userService.save(user);
 		} catch (Exception e) {
 			log.error("createUser error: ", e.getMessage());
 		}
@@ -48,10 +63,10 @@ public class UserController {
 		
 		User user = null;
 		try {
-			user = userRepo.findUserByEmail(email);
+			user = userService.findByEmail(email);
 			return user;
 		} catch (Exception e) {
-			log.error("getUser error: ", e.getMessage());
+			log.error(e.getMessage());
 			return user;
 		}
 	}
@@ -64,7 +79,7 @@ public class UserController {
 		String roleS = "";
 		
 		try {
-			List<Role> roles = roleRepo.findByUserId(id);
+			List<Role> roles = userService.findByUserId(id);
 			for(Role role : roles) {
 				r = role.getRole();
 				if(r == 3) {
@@ -77,7 +92,7 @@ public class UserController {
 			
 			return roleS;
 		} catch (Exception e) {
-			log.error("getUserById error: ", e);
+			log.error(e.getMessage());
 			return roleS;
 		}
 	}
