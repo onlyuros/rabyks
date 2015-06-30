@@ -35,7 +35,7 @@ public class PartnerObjectSetupController {
 		try {
 			return posRepo.findByPartnerId(partnerId);
 		} catch (Exception e) {
-			log.error("getPOS error: ", e.getMessage());
+			log.error("getPOS error: ", e);
 			return null;
 		}
 	}
@@ -53,7 +53,7 @@ public class PartnerObjectSetupController {
 			posOld.setObjects(pos.getObjects());
 			posRepo.save(posOld); 
 		} catch (Exception e) {
-			log.error("updatePartnerObjectSetup error! ", e.getMessage());
+			log.error("updatePartnerObjectSetup error! ", e);
 		}
 	}
 }

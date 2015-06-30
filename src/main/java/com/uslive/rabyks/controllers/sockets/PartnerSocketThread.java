@@ -194,7 +194,7 @@ public class PartnerSocketThread extends Thread {
         		}
 	        	socket.close();  
         	} catch (Exception e) {
-        		log.error("ClubSocketThread socket close error! ", e.getMessage());
+        		log.error("ClubSocketThread socket close error! ", e);
         	}
         }
 	}

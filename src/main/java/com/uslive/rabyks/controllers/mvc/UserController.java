@@ -40,7 +40,7 @@ public class UserController {
 			String password = request.getParameter("password");
 			json = userService.login(email, password);
 		} catch (Exception e) {
-			log.error(e.getMessage());
+			log.error("login error: ", e);
 		}
 		return json;
 	}
@@ -52,7 +52,7 @@ public class UserController {
 		try {
 			userService.save(user);
 		} catch (Exception e) {
-			log.error("createUser error: ", e.getMessage());
+			log.error("Create user error: ", e);
 		}
 	}
 	
@@ -64,11 +64,10 @@ public class UserController {
 		User user = null;
 		try {
 			user = userService.findByEmail(email);
-			return user;
 		} catch (Exception e) {
-			log.error(e.getMessage());
-			return user;
+			log.error("Get user by email error: ", e);
 		}
+		return user;
 	}
 	
 	@RequestMapping(value="/getUserRoles/{id}", method=RequestMethod.GET)
@@ -92,7 +91,7 @@ public class UserController {
 			
 			return roleS;
 		} catch (Exception e) {
-			log.error(e.getMessage());
+			log.error("Get User roles error: ", e);
 			return roleS;
 		}
 	}

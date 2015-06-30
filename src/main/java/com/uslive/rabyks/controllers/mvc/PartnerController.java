@@ -32,7 +32,7 @@ public class PartnerController {
 			partner = partnerRepo.findOne(id);
 			return partner; 
 		} catch (Exception e) {
-			log.error("getPartnerById error: ", e.getMessage());
+			log.error("getPartnerById error: ", e);
 			return partner;
 		}
 	} 
@@ -44,7 +44,7 @@ public class PartnerController {
 		try {
 			return partnerRepo.findByName(name);
 		} catch (Exception e) {
-			log.error("getPartnerById error: ", e.getMessage());
+			log.error("getPartnerById error: ", e);
 			return null;
 		}
 	}
@@ -55,7 +55,7 @@ public class PartnerController {
 		try {
 			return partnerRepo.findAll();
 		} catch (Exception e) {
-			log.error("getPartners error: ", e.getMessage());
+			log.error("getPartners error: ", e);
 			return null;
 		}
 	}
@@ -67,7 +67,7 @@ public class PartnerController {
 		try { 
 			return partnerRepo.findByCreatedAtGreaterThan(createdAt);
 		} catch (Exception e) {
-			log.error(e.getMessage());
+			log.error("getLatestPartners error: ", e);
 			return null;
 		}
 	}

@@ -33,7 +33,7 @@ public class SocketServer implements CommandLineRunner{
 	    	}
 			
 	    } catch (Exception e) {
-	    	log.error("SocketServer error! ", e.getMessage());
+	    	log.error("Server socket error: ", e);
 	    }
 	}
 }
