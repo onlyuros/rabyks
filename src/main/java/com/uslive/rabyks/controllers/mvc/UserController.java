@@ -34,10 +34,8 @@ public class UserController {
 	public String login(HttpServletRequest request) {
 
 		String json = null;
-		System.out.println("USAO U LOGIN");
 		try {
 			String email = request.getParameter("email");
-			System.out.println("uzeo mail " + email);
 			String password = request.getParameter("password");
 			json = userService.login(email, password);
 		} catch (Exception e) {
