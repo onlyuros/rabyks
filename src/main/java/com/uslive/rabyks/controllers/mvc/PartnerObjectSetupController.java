@@ -1,5 +1,7 @@
 package com.uslive.rabyks.controllers.mvc;
 
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
@@ -13,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+import com.uslive.rabyks.common.SharedLists;
+import com.uslive.rabyks.models.ClubNameSocket;
 import com.uslive.rabyks.models.mongo.PartnerObjectSetup;
 import com.uslive.rabyks.repositories.mongo.PartnerObjectSetupRepository;
 import com.uslive.rabyks.repositories.mysql.PartnerRepository;
@@ -52,8 +56,21 @@ public class PartnerObjectSetupController {
 			posOld.setDefaultTableSeatCount(pos.getDefaultTableSeatCount());
 			posOld.setObjects(pos.getObjects());
 			posRepo.save(posOld); 
+			
+			synchronized(SharedLists.clubNameSocketList) {
+	    		System.out.println("USAO U SINH clubNameSocketList");
+	        	for(ClubNameSocket cns : SharedLists.clubNameSocketList) {
+	    				if(pos.getPartnerId() == cns.getPartnerId()) {
+		            		PrintWriter outA = new PrintWriter(cns.getSocket().getOutputStream(), true);
+		            		System.out.println("PISE NA SVE SOCKETE");
+		            		outA.println("poruka:" + "partnerObjectSetup");
+	    				}
+	        	}
+	    	}
 		} catch (Exception e) {
 			log.error("updatePartnerObjectSetup error! ", e);
 		}
+		
+		
 	}
 }
