@@ -2,14 +2,13 @@ package com.uslive.rabyks.controllers.mvc;
 
 import java.io.PrintWriter;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -46,27 +45,30 @@ public class PartnerObjectSetupController {
 	
 	@RequestMapping(value="/postPartnerObjectSetup", method=RequestMethod.POST)
 	@ResponseStatus(value = HttpStatus.OK)
-	public void updatePartnerObjectSetup(HttpServletRequest request) {
+	public void updatePartnerObjectSetup(@RequestBody String jsonArrayPOS) {
 		try {
-			PartnerObjectSetup pos = (PartnerObjectSetup) request.getAttribute("partnerObjectSetup");
-			PartnerObjectSetup posOld = posRepo.findByPartnerId(pos.getPartnerId());
-			posOld.setDefaultBarseatSeatCount(pos.getDefaultBarseatSeatCount());
-			posOld.setDefaultSepareSeatCount(pos.getDefaultSepareSeatCount());
-			posOld.setDefaultStandSeatCount(pos.getDefaultStandSeatCount());
-			posOld.setDefaultTableSeatCount(pos.getDefaultTableSeatCount());
-			posOld.setObjects(pos.getObjects());
-			posRepo.save(posOld); 
 			
-			synchronized(SharedLists.clubNameSocketList) {
-	    		System.out.println("USAO U SINH clubNameSocketList");
-	        	for(ClubNameSocket cns : SharedLists.clubNameSocketList) {
-	    				if(pos.getPartnerId() == cns.getPartnerId()) {
-		            		PrintWriter outA = new PrintWriter(cns.getSocket().getOutputStream(), true);
-		            		System.out.println("PISE NA SVE SOCKETE");
-		            		outA.println("poruka:" + "partnerObjectSetup");
-	    				}
-	        	}
-	    	}
+			System.out.println(jsonArrayPOS);
+			
+//			PartnerObjectSetup pos = (PartnerObjectSetup) request.getAttribute("partnerObjectSetup");
+//			PartnerObjectSetup posOld = posRepo.findByPartnerId(pos.getPartnerId());
+//			posOld.setDefaultBarseatSeatCount(pos.getDefaultBarseatSeatCount());
+//			posOld.setDefaultSepareSeatCount(pos.getDefaultSepareSeatCount());
+//			posOld.setDefaultStandSeatCount(pos.getDefaultStandSeatCount());
+//			posOld.setDefaultTableSeatCount(pos.getDefaultTableSeatCount());
+//			posOld.setObjects(pos.getObjects());
+//			posRepo.save(posOld); 
+//			
+//			synchronized(SharedLists.clubNameSocketList) {
+//	    		System.out.println("USAO U SINH clubNameSocketList");
+//	        	for(ClubNameSocket cns : SharedLists.clubNameSocketList) {
+//	    				if(pos.getPartnerId() == cns.getPartnerId()) {
+//		            		PrintWriter outA = new PrintWriter(cns.getSocket().getOutputStream(), true);
+//		            		System.out.println("PISE NA SVE SOCKETE");
+//		            		outA.println("poruka:" + "partnerObjectSetup");
+//	    				}
+//	        	}
+//	    	}
 		} catch (Exception e) {
 			log.error("updatePartnerObjectSetup error! ", e);
 		}
