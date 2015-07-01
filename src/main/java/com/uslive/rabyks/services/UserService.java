@@ -1,5 +1,6 @@
 package com.uslive.rabyks.services;
 
+import java.io.StringWriter;
 import java.util.List;
 
 import org.json.JSONObject;
@@ -39,14 +40,27 @@ public class UserService {
 	public String login(String email, String password) throws Exception {
 		User user = userRepo.findByEmailAndPassword(email, password);
 		List<Role> role = roleRepo.findByUserId(user.getId());
-		
-		String json = "{\"id\": " + user.getId() + ", " + "\"email\": \"" + user.getEmail() + "\", " + "\"password\": \"" + user.getPassword() + "\", " + "\"number\": \"" + user.getNumber();
+		int[] partners = userRepo.findPartnersByUserId(user.getId());
 
-		if(role.get(0).getRole() == 1) {
-			json += "\", " + "\"role\": \"" + "admin" + "\"}";
-		} else if (role.get(0).getRole() == 2) {
-			json += "\", " + "\"role\": \"" + "konobar" + "\"}";
-		}
-		return json;
-	}
+		JSONObject jobj = new JSONObject();
+		jobj.put("id", user.getId());
+		jobj.put("email", user.getEmail());
+		jobj.put("password", user.getPassword());
+		jobj.put("number", user.getNumber());
+		jobj.put("role", role.get(0).getRole() == 1 ? "admin" : "konobar");
+		
+		jobj.put("partners", partners);
+		
+//		String json = "{\"id\": " + user.getId() + ", " + "\"email\": \"" + user.getEmail() + "\", " + "\"password\": \"" + user.getPassword() + "\", " + "\"number\": \"" + user.getNumber();
+//
+//		if() {
+//			json += "\", " + "\"role\": \"" + "admin\", ";
+//		} else if (role.get(0).getRole() == 2) {
+//			json += "\", " + "\"role\": \"" + "konobar\", ";
+//		}
+				
+		StringWriter sw = new StringWriter();
+		jobj.write(sw);
+		return sw.toString();
+	}	
 }

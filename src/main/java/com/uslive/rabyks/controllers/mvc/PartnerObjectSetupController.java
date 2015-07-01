@@ -45,7 +45,7 @@ public class PartnerObjectSetupController {
 	
 	@RequestMapping(value="/postPartnerObjectSetup", method=RequestMethod.POST)
 	@ResponseStatus(value = HttpStatus.OK)
-	public void updatePartnerObjectSetup(@RequestBody String jsonArrayPOS) {
+	public void updatePartnerObjectSetup(@RequestBody PartnerObjectSetup jsonArrayPOS) {
 		try {
 			
 			System.out.println(jsonArrayPOS);
