@@ -45,19 +45,16 @@ public class PartnerObjectSetupController {
 	
 	@RequestMapping(value="/postPartnerObjectSetup", method=RequestMethod.POST)
 	@ResponseStatus(value = HttpStatus.OK)
-	public void updatePartnerObjectSetup(@RequestBody PartnerObjectSetup jsonArrayPOS) {
+	public void updatePartnerObjectSetup(@RequestBody PartnerObjectSetup pos) {
 		try {
 			
-			System.out.println(jsonArrayPOS);
-			
-//			PartnerObjectSetup pos = (PartnerObjectSetup) request.getAttribute("partnerObjectSetup");
-//			PartnerObjectSetup posOld = posRepo.findByPartnerId(pos.getPartnerId());
+			PartnerObjectSetup posDB = posRepo.findByPartnerId(pos.getPartnerId());
 //			posOld.setDefaultBarseatSeatCount(pos.getDefaultBarseatSeatCount());
 //			posOld.setDefaultSepareSeatCount(pos.getDefaultSepareSeatCount());
 //			posOld.setDefaultStandSeatCount(pos.getDefaultStandSeatCount());
 //			posOld.setDefaultTableSeatCount(pos.getDefaultTableSeatCount());
-//			posOld.setObjects(pos.getObjects());
-//			posRepo.save(posOld); 
+			posDB.setObjects(pos.getObjects());
+			posRepo.save(posDB); 
 //			
 //			synchronized(SharedLists.clubNameSocketList) {
 //	    		System.out.println("USAO U SINH clubNameSocketList");
