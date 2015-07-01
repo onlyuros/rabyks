@@ -31,9 +31,9 @@ public class UserController {
 	
 	@RequestMapping(value="/login", method=RequestMethod.POST)
 	@ResponseBody
-	public JSONObject login(HttpServletRequest request) {
+	public String login(HttpServletRequest request) {
 
-		JSONObject json = null;
+		String json = null;
 		System.out.println("USAO U LOGIN");
 		try {
 			String email = request.getParameter("email");

@@ -36,19 +36,16 @@ public class UserService {
 		return userRepo.findByEmail(email);
 	}
 
-	public JSONObject login(String email, String password) throws Exception {
+	public String login(String email, String password) throws Exception {
 		User user = userRepo.findByEmailAndPassword(email, password);
 		List<Role> role = roleRepo.findByUserId(user.getId());
 		
-		JSONObject json = new JSONObject();
-		json.put("id", user.getId());
-		json.put("email", user.getEmail());
-		json.put("password", user.getPassword());
-		json.put("number", user.getNumber());
+		String json = "{\"id\": " + user.getId() + ", " + "\"email\": \"" + user.getEmail() + "\", " + "\"password\": \"" + user.getPassword() + "\", " + "\"number\": \"" + user.getNumber();
+
 		if(role.get(0).getRole() == 1) {
-			json.put("role", "admin");
+			json += "\", " + "\"role\": \"" + "admin" + "\"}";
 		} else if (role.get(0).getRole() == 2) {
-			json.put("role", "konobar");
+			json += "\", " + "\"role\": \"" + "konobar" + "\"}";
 		}
 		return json;
 	}
