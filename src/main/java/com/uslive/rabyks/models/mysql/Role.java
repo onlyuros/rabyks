@@ -21,9 +21,9 @@ public class Role implements Serializable {
 	public Role() {
 	}
 	
-	public Role(int id, int role) {
-		this.id = id;
+	public Role(int role, int userId) {
 		this.role = role;
+		this.userId = userId;
 	}
 	
 	public Role(int id, int role, int userId, User user) {

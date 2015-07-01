@@ -11,9 +11,9 @@ import com.uslive.rabyks.models.mysql.Role;
 
 public interface RoleRepository extends JpaRepository<Role, Serializable>{
 
-	@Query(value="select new Role(id, userId) from Role r where r.role = :role")
+	@Query(value="select new Role(role, userId) from Role r where r.role = :role")
 	public List<Role> findByRole(@Param("role") int role);
 	
-	@Query(value="select new Role(id, userId) from Role r where r.userId = :userId")
+	@Query(value="select new Role(role, userId) from Role r where r.userId = :userId")
 	public List<Role> findByUserId(@Param("userId") int userId);
 }
