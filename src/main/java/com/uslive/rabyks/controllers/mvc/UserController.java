@@ -79,7 +79,7 @@ public class UserController {
 			List<Role> roles = userService.findByUserId(id);
 			for(Role role : roles) {
 				r = role.getRole();
-				if(r == 3) {
+				if(r == 1) {
 					roleS = "admin";
 					break;
 				} else if (r == 2) {

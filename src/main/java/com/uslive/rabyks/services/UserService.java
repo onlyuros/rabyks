@@ -1,12 +1,14 @@
 package com.uslive.rabyks.services;
 
 import java.io.StringWriter;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.uslive.rabyks.models.mysql.Partner;
 import com.uslive.rabyks.models.mysql.Role;
 import com.uslive.rabyks.models.mysql.User;
 import com.uslive.rabyks.repositories.mysql.RoleRepository;
@@ -40,25 +42,19 @@ public class UserService {
 	public String login(String email, String password) throws Exception {
 		User user = userRepo.findByEmailAndPassword(email, password);
 		List<Role> role = roleRepo.findByUserId(user.getId());
-		int[] partners = userRepo.findPartnersByUserId(user.getId());
-
+		List<Partner> partners = userRepo.findPartnersByUserId(user.getId());
+		ArrayList<Integer> partnerIds = new ArrayList<Integer>();
+		for (Partner p : partners) {
+			partnerIds.add(p.getId());
+		}
+		
 		JSONObject jobj = new JSONObject();
 		jobj.put("id", user.getId());
 		jobj.put("email", user.getEmail());
 		jobj.put("password", user.getPassword());
-		jobj.put("number", user.getNumber());
+		jobj.put("number", user.getNumber() == null ? "null" : user.getNumber());
 		jobj.put("role", role.get(0).getRole() == 1 ? "admin" : "konobar");
-		
-		jobj.put("partners", partners);
-		
-//		String json = "{\"id\": " + user.getId() + ", " + "\"email\": \"" + user.getEmail() + "\", " + "\"password\": \"" + user.getPassword() + "\", " + "\"number\": \"" + user.getNumber();
-//
-//		if() {
-//			json += "\", " + "\"role\": \"" + "admin\", ";
-//		} else if (role.get(0).getRole() == 2) {
-//			json += "\", " + "\"role\": \"" + "konobar\", ";
-//		}
-				
+		jobj.put("partners", partnerIds);
 		StringWriter sw = new StringWriter();
 		jobj.write(sw);
 		return sw.toString();
