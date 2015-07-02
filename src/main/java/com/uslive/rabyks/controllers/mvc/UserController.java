@@ -53,8 +53,7 @@ public class UserController {
 			log.error("Create user error: ", e);
 		}
 	}
-	
-	
+		
 	@RequestMapping(value="/getUser/{email}", method=RequestMethod.GET) 
 	@ResponseBody
 	public User getUserByEmail(@PathVariable("email") String email) {
@@ -91,6 +90,32 @@ public class UserController {
 		} catch (Exception e) {
 			log.error("Get User roles error: ", e);
 			return roleS;
+		}
+	}
+	
+	@RequestMapping(value="/addWaiter", method=RequestMethod.POST) 
+	@ResponseStatus(value=HttpStatus.OK)
+	public void addWaiter(HttpServletRequest request) {
+		String email = request.getParameter("email");
+		String password = request.getParameter("password");
+		try {
+			User u = new User();
+			u.setEmail(email);
+			u.setPassword(password);
+			userService.save(u);
+		} catch (Exception e) {
+			log.error("addWaiter error :", e);
+		}
+	}
+	
+	@RequestMapping(value="/removeWaiter", method=RequestMethod.POST) 
+	@ResponseStatus(value=HttpStatus.OK)
+	public void removeWaiter(HttpServletRequest request) {
+		String email = request.getParameter("email");
+		try {
+			Integer id = userService.deleteByEmail(email);
+		} catch (Exception e) {
+			log.error("removeWaiter error: ", e);
 		}
 	}
 }

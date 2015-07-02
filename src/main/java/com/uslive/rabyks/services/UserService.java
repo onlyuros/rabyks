@@ -35,6 +35,10 @@ public class UserService {
 		userRepo.save(user);
 	}
 
+	public Integer deleteByEmail(String email) throws Exception {
+		return userRepo.deleteByEmail(email);
+	}
+	
 	public User findByEmail(String email) throws Exception {
 		return userRepo.findByEmail(email);
 	}

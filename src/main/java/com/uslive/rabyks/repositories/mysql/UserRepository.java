@@ -21,4 +21,6 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 	
 	@Query(value="SELECT u.partners1 FROM User u WHERE u.id = :userId")
 	public List<Partner> findPartnersByUserId(@Param("userId") int userId);
+	
+	public Integer deleteByEmail(String email);
 }
