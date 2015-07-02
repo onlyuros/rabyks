@@ -117,7 +117,7 @@ public class UserController {
 		}
 	}
 	
-	@RequestMapping(value="/getWaiters/{partnerId}", method=RequestMethod.POST)
+	@RequestMapping(value="/getWaiters/{partnerId}", method=RequestMethod.GET)
 	@ResponseStatus(value=HttpStatus.OK)
 	public List<User> getWaiters(@PathVariable("partnerId") String partnerId) {
 	
