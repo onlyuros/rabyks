@@ -5,17 +5,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.uslive.rabyks.models.mysql.Partner;
 import com.uslive.rabyks.models.mysql.Role;
 import com.uslive.rabyks.models.mysql.User;
+import com.uslive.rabyks.repositories.mysql.PartnerRepository;
 import com.uslive.rabyks.repositories.mysql.RoleRepository;
 import com.uslive.rabyks.repositories.mysql.UserRepository;
 
 @Service
 public class UserService {
+	
+	Logger log = LoggerFactory.getLogger(UserService.class);
 	
 	@Autowired
 	private UserRepository userRepo;
@@ -23,6 +28,9 @@ public class UserService {
 	@Autowired
 	private RoleRepository roleRepo;
 
+	@Autowired
+	private PartnerRepository partnerRepo;
+	
 	public User findByEmailAndPassword(String email, String password) throws Exception{
 		return userRepo.findByEmailAndPassword(email, password);
 	}
@@ -63,4 +71,28 @@ public class UserService {
 		jobj.write(sw);
 		return sw.toString();
 	}	
+
+	public void addWaiter(String email, String password, int partnerId) throws Exception {
+		User u = new User();
+		u.setEmail(email);
+		u.setPassword(password);
+		
+		Partner p = partnerRepo.findById(partnerId);
+		List<Partner> pl = new ArrayList<Partner>();
+		pl.add(p);
+		u.setPartners1(pl);
+		
+		User uNew = userRepo.save(u);
+		
+		Role role = new Role();
+		role.setRole(2); // 2 je konobar 
+		role.setUserId(uNew.getId());
+		
+		uNew.setRole(role);
+		userRepo.save(uNew);
+	}
+
+	public List<User> findByRole(int role) throws Exception {
+		return userRepo.findByRole(role);
+	}
 }

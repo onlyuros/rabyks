@@ -27,7 +27,7 @@ public class UserController {
 	
 	@Autowired
 	private UserService userService;
-	
+
 	@RequestMapping(value="/login", method=RequestMethod.POST)
 	@ResponseBody
 	public String login(HttpServletRequest request) {
@@ -98,13 +98,11 @@ public class UserController {
 	public void addWaiter(HttpServletRequest request) {
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
+		int partnerId = Integer.parseInt(request.getParameter("partnerId"));
 		try {
-			User u = new User();
-			u.setEmail(email);
-			u.setPassword(password);
-			userService.save(u);
+			userService.addWaiter(email, password, partnerId);
 		} catch (Exception e) {
-			log.error("addWaiter error :", e);
+			log.error("addWaiter error: ", e);
 		}
 	}
 	
@@ -117,5 +115,18 @@ public class UserController {
 		} catch (Exception e) {
 			log.error("removeWaiter error: ", e);
 		}
+	}
+	
+	@RequestMapping(value="/getWaiters/{partnerId}", method=RequestMethod.POST)
+	@ResponseStatus(value=HttpStatus.OK)
+	public List<User> getWaiters(@PathVariable("partnerId") String partnerId) {
+	
+		List<User> ul = null;
+		try {
+			ul = userService.findByRole(2);
+		} catch (Exception e) {
+			log.error("getWaiters error: ", e);
+		}
+		return ul;
 	}
 }
