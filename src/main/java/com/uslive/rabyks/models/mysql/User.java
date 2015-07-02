@@ -25,6 +25,12 @@ public class User implements Serializable {
 	public User() {
 	}
 
+	public User(int id, String email, String password, String number) {
+		this.id = id;
+		this.email = email;
+		this.password = password;
+		this.number = number;
+	}
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)

@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -118,7 +120,7 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="/getWaiters/{partnerId}", method=RequestMethod.GET)
-	@ResponseStatus(value=HttpStatus.OK)
+	@ResponseBody
 	public List<User> getWaiters(@PathVariable("partnerId") String partnerId) {
 	
 		List<User> ul = null;
