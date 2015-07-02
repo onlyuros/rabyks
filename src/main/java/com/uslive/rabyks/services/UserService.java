@@ -93,6 +93,12 @@ public class UserService {
 	}
 
 	public List<User> findByRole(int role) throws Exception {
-		return userRepo.findByRole(role);
+		List<Role> rl = roleRepo.findByRole(role);
+		List<User> ul = new ArrayList<User>();
+		
+		for (Role r : rl) {
+			ul.add(userRepo.findById(r.getUserId()));
+		}
+		return ul;
 	}
 }
