@@ -13,62 +13,25 @@ import javax.persistence.*;
 @NamedQuery(name="Role.findAll", query="SELECT r FROM Role r")
 public class Role implements Serializable {
 	private static final long serialVersionUID = 1L;
-	private int id;
-	private int role;
-	private int userId;
+	private RolePK id;
 	private User user;
 
 	public Role() {
 	}
-	
-	public Role(int role, int userId) {
-		this.role = role;
-		this.userId = userId;
-	}
-	
-	public Role(int id, int role, int userId, User user) {
-		super();
-		this.id = id;
-		this.role = role;
-		this.userId = userId;
-		this.user = user;
-	}
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(unique=true, nullable=false)
-	public int getId() {
+	@EmbeddedId
+	public RolePK getId() {
 		return this.id;
 	}
 
-	public void setId(int id) {
+	public void setId(RolePK id) {
 		this.id = id;
 	}
 
 
-	@Column(nullable=false)
-	public int getRole() {
-		return this.role;
-	}
-
-	public void setRole(int role) {
-		this.role = role;
-	}
-
-
-	@Column(name="user_id", nullable=false)
-	public int getUserId() {
-		return this.userId;
-	}
-
-	public void setUserId(int userId) {
-		this.userId = userId;
-	}
-
-
-	//bi-directional one-to-one association to User
-	@OneToOne
-	@JoinColumn(name="id", nullable=false, insertable=false, updatable=false)
+	//bi-directional many-to-one association to User
+	@ManyToOne
+	@JoinColumn(name="user_id", nullable=false, insertable=false, updatable=false)
 	public User getUser() {
 		return this.user;
 	}

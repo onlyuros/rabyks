@@ -24,6 +24,4 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 	public List<Partner> findPartnersByUserId(@Param("userId") int userId);
 	
 	public Integer deleteByEmail(String email);
-	
-	public List<User> findByRole(int role);
 }

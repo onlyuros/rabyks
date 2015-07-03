@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 29, 2015 at 09:03 PM
+-- Generation Time: Jul 03, 2015 at 02:18 PM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -65,20 +65,21 @@ INSERT INTO `partners` (`id`, `name`, `address`, `number`, `logo_url`, `layout_i
 
 DROP TABLE IF EXISTS `roles`;
 CREATE TABLE IF NOT EXISTS `roles` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
   `role` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+  PRIMARY KEY (`role`,`user_id`),
+  KEY `user_id` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `roles`
 --
 
-INSERT INTO `roles` (`id`, `role`, `user_id`) VALUES
-(1, 1, 1),
-(2, 2, 2),
-(3, 3, 3);
+INSERT INTO `roles` (`role`, `user_id`) VALUES
+(1, 1),
+(2, 2),
+(3, 3),
+(2, 4);
 
 -- --------------------------------------------------------
 
@@ -94,7 +95,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `number` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
 
 --
 -- Dumping data for table `users`
@@ -103,7 +104,9 @@ CREATE TABLE IF NOT EXISTS `users` (
 INSERT INTO `users` (`id`, `email`, `password`, `number`) VALUES
 (1, 'uros@hp.com', 'password', NULL),
 (2, 'milos@gmail.com', 'password', '1234567'),
-(3, 'user@user.com', 'password', '7654321');
+(3, 'user@user.com', 'password', '7654321'),
+(4, 'djole@djole.com', 'password', '32456754'),
+(11, 't', 't', NULL);
 
 -- --------------------------------------------------------
 
@@ -127,7 +130,8 @@ INSERT INTO `user_partner` (`user_id`, `partner_id`) VALUES
 (1, 1),
 (2, 1),
 (1, 2),
-(2, 2);
+(2, 2),
+(4, 2);
 
 --
 -- Constraints for dumped tables
@@ -137,7 +141,7 @@ INSERT INTO `user_partner` (`user_id`, `partner_id`) VALUES
 -- Constraints for table `roles`
 --
 ALTER TABLE `roles`
-  ADD CONSTRAINT `roles_ibfk_1` FOREIGN KEY (`id`) REFERENCES `users` (`id`);
+  ADD CONSTRAINT `roles_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 
 --
 -- Constraints for table `user_partner`

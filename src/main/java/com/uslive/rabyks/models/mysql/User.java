@@ -19,7 +19,7 @@ public class User implements Serializable {
 	private String number;
 	private String password;
 	private List<Partner> partners1;
-	private Role role;
+	private List<Role> roles;
 	private List<Partner> partners2;
 
 	public User() {
@@ -85,14 +85,28 @@ public class User implements Serializable {
 	}
 
 
-	//bi-directional one-to-one association to Role
-	@OneToOne(mappedBy="user")
-	public Role getRole() {
-		return this.role;
+	//bi-directional many-to-one association to Role
+	@OneToMany(mappedBy="user")
+	public List<Role> getRoles() {
+		return this.roles;
 	}
 
-	public void setRole(Role role) {
-		this.role = role;
+	public void setRoles(List<Role> roles) {
+		this.roles = roles;
+	}
+
+	public Role addRole(Role role) {
+		getRoles().add(role);
+		role.setUser(this);
+
+		return role;
+	}
+
+	public Role removeRole(Role role) {
+		getRoles().remove(role);
+		role.setUser(null);
+
+		return role;
 	}
 
 

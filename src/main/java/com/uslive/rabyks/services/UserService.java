@@ -36,7 +36,7 @@ public class UserService {
 	}
 
 	public List<Role> findByUserId(int id) throws Exception {
-		return roleRepo.findByUserId(id);
+		return roleRepo.findByIdUserId(id);
 	}
 
 	public void save(User user) throws Exception {
@@ -53,7 +53,7 @@ public class UserService {
 
 	public String login(String email, String password) throws Exception {
 		User user = userRepo.findByEmailAndPassword(email, password);
-		List<Role> role = roleRepo.findByUserId(user.getId());
+		List<Role> role = roleRepo.findByIdUserId(user.getId());
 		List<Partner> partners = userRepo.findPartnersByUserId(user.getId());
 		ArrayList<Integer> partnerIds = new ArrayList<Integer>();
 		for (Partner p : partners) {
@@ -65,7 +65,7 @@ public class UserService {
 		jobj.put("email", user.getEmail());
 		jobj.put("password", user.getPassword());
 		jobj.put("number", user.getNumber() == null ? "null" : user.getNumber());
-		jobj.put("role", role.get(0).getRole() == 1 ? "admin" : "konobar");
+		jobj.put("role", role.get(0).getId().getRole() == 1 ? "admin" : "konobar");
 		jobj.put("partners", partnerIds);
 		StringWriter sw = new StringWriter();
 		jobj.write(sw);
@@ -85,19 +85,24 @@ public class UserService {
 		User uNew = userRepo.save(u);
 		
 		Role role = new Role();
-		role.setRole(2); // 2 je konobar 
-		role.setUserId(uNew.getId());
+		role.getId().setRole(2);// 2 je konobar 
+		role.getId().setUserId(uNew.getId());
+		role.setUser(uNew);
+		roleRepo.save(role);
 		
-		uNew.setRole(role);
+		ArrayList<Role> roles = new ArrayList<Role>();
+		roles.add(role);
+		
+		uNew.setRoles(roles);
 		userRepo.save(uNew);
 	}
 
 	public List<User> findByRole(int role) throws Exception {
-		List<Role> rl = roleRepo.findByRole(role);
+		List<Role> rl = roleRepo.findByIdRole(role);
 		List<User> ul = new ArrayList<User>();
 		
 		for (Role r : rl) {
-			ul.add(userRepo.findById(r.getUserId()));
+			ul.add(userRepo.findById(r.getId().getUserId()));
 		}
 		return ul;
 	}

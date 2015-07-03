@@ -1,9 +1,7 @@
 package com.uslive.rabyks.models.mysql;
 
 import java.io.Serializable;
-
 import javax.persistence.*;
-
 import java.math.BigInteger;
 import java.util.List;
 
@@ -37,25 +35,24 @@ public class Partner implements Serializable {
 	public Partner() {
 	}
 
-	public Partner(int id, String name, String address, String number, String logoUrl,
-			String layoutImgUrl, String galeryImg1Url, String galeryImg2Url,
-			String galeryImg3Url, int type, String details, String workingHours,
-			BigInteger createdAt, BigInteger modifiedAt) {
-
-		this.id = id;
+	public Partner(int id, String name, String address, String number, 
+			String logoUrl, String layoutImgUrl, String galeryImg1Url, 
+			String galeryImg2Url, String galeryImg3Url, int type, String details,
+			String workingHours, BigInteger createdAt, BigInteger modifiedAt) {
+		this.id = id;	
+		this.name = name;
 		this.address = address;
-		this.createdAt = createdAt;
-		this.details = details;
+		this.number = number;
+		this.logoUrl = logoUrl;
+		this.layoutImgUrl = layoutImgUrl;
 		this.galeryImg1Url = galeryImg1Url;
 		this.galeryImg2Url = galeryImg2Url;
 		this.galeryImg3Url = galeryImg3Url;
-		this.layoutImgUrl = layoutImgUrl;
-		this.logoUrl = logoUrl;
-		this.modifiedAt = modifiedAt;
-		this.name = name;
-		this.number = number;
 		this.type = type;
+		this.details = details;
 		this.workingHours = workingHours;
+		this.createdAt = createdAt;
+		this.modifiedAt = modifiedAt;
 	}
 
 	@Id
@@ -150,7 +147,7 @@ public class Partner implements Serializable {
 	}
 
 
-	@Column(name="modified_at")
+	@Column(name="modified_at", nullable=false)
 	public BigInteger getModifiedAt() {
 		return this.modifiedAt;
 	}
