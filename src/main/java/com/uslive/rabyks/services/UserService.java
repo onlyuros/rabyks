@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import com.uslive.rabyks.models.mysql.Partner;
 import com.uslive.rabyks.models.mysql.Role;
+import com.uslive.rabyks.models.mysql.RolePK;
 import com.uslive.rabyks.models.mysql.User;
 import com.uslive.rabyks.repositories.mysql.PartnerRepository;
 import com.uslive.rabyks.repositories.mysql.RoleRepository;
@@ -80,13 +81,15 @@ public class UserService {
 		Partner p = partnerRepo.findById(partnerId);
 		List<Partner> pl = new ArrayList<Partner>();
 		pl.add(p);
-		u.setPartners1(pl);
+		u.setPartners2(pl);
 		
 		User uNew = userRepo.save(u);
 		
 		Role role = new Role();
-		role.getId().setRole(2);// 2 je konobar 
-		role.getId().setUserId(uNew.getId());
+		RolePK pk = new RolePK();
+		pk.setRole(2);
+		pk.setUserId(uNew.getId());
+		role.setId(pk);
 		role.setUser(uNew);
 		roleRepo.save(role);
 		
