@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 03, 2015 at 02:18 PM
+-- Generation Time: Jul 06, 2015 at 01:25 PM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -95,7 +95,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `number` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `users`
@@ -105,8 +105,7 @@ INSERT INTO `users` (`id`, `email`, `password`, `number`) VALUES
 (1, 'uros@hp.com', 'password', NULL),
 (2, 'milos@gmail.com', 'password', '1234567'),
 (3, 'user@user.com', 'password', '7654321'),
-(4, 'djole@djole.com', 'password', '32456754'),
-(11, 't', 't', NULL);
+(4, 'djole@djole.com', 'password', '32456754');
 
 -- --------------------------------------------------------
 
@@ -141,7 +140,7 @@ INSERT INTO `user_partner` (`user_id`, `partner_id`) VALUES
 -- Constraints for table `roles`
 --
 ALTER TABLE `roles`
-  ADD CONSTRAINT `roles_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+  ADD CONSTRAINT `roles_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `user_partner`

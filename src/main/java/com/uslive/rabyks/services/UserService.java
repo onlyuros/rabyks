@@ -45,7 +45,9 @@ public class UserService {
 	}
 
 	public Integer deleteByEmail(String email) throws Exception {
-		return userRepo.deleteByEmail(email);
+		User u = userRepo.findByEmail(email);
+		userRepo.delete(u);
+		return u.getId();
 	}
 	
 	public User findByEmail(String email) throws Exception {

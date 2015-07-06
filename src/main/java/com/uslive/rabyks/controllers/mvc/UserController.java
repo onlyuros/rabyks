@@ -4,8 +4,6 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -113,7 +111,7 @@ public class UserController {
 	public void removeWaiter(HttpServletRequest request) {
 		String email = request.getParameter("email");
 		try {
-			Integer id = userService.deleteByEmail(email);
+			userService.deleteByEmail(email);
 		} catch (Exception e) {
 			log.error("removeWaiter error: ", e);
 		}
