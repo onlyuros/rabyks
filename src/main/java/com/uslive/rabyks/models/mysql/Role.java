@@ -19,6 +19,7 @@ public class Role implements Serializable {
 	public Role() {
 	}
 
+
 	@EmbeddedId
 	public RolePK getId() {
 		return this.id;

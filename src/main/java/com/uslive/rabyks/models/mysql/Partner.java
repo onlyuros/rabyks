@@ -3,6 +3,7 @@ package com.uslive.rabyks.models.mysql;
 import java.io.Serializable;
 import javax.persistence.*;
 import java.math.BigInteger;
+import java.math.BigDecimal;
 import java.util.List;
 
 
@@ -22,8 +23,10 @@ public class Partner implements Serializable {
 	private String galeryImg1Url;
 	private String galeryImg2Url;
 	private String galeryImg3Url;
+	private BigDecimal latitude;
 	private String layoutImgUrl;
 	private String logoUrl;
+	private BigDecimal longitude;
 	private BigInteger modifiedAt;
 	private String name;
 	private String number;
@@ -34,11 +37,11 @@ public class Partner implements Serializable {
 
 	public Partner() {
 	}
-
+	
 	public Partner(int id, String name, String address, String number, 
 			String logoUrl, String layoutImgUrl, String galeryImg1Url, 
 			String galeryImg2Url, String galeryImg3Url, int type, String details,
-			String workingHours, BigInteger createdAt, BigInteger modifiedAt) {
+			String workingHours, BigInteger createdAt, BigInteger modifiedAt, BigDecimal longitude, BigDecimal latitude) {
 		this.id = id;	
 		this.name = name;
 		this.address = address;
@@ -53,6 +56,8 @@ public class Partner implements Serializable {
 		this.workingHours = workingHours;
 		this.createdAt = createdAt;
 		this.modifiedAt = modifiedAt;
+		this.longitude = longitude;
+		this.latitude = latitude;
 	}
 
 	@Id
@@ -127,6 +132,16 @@ public class Partner implements Serializable {
 	}
 
 
+	@Column(nullable=false, precision=10, scale=8)
+	public BigDecimal getLatitude() {
+		return this.latitude;
+	}
+
+	public void setLatitude(BigDecimal latitude) {
+		this.latitude = latitude;
+	}
+
+
 	@Column(name="layout_img_url", nullable=false, length=100)
 	public String getLayoutImgUrl() {
 		return this.layoutImgUrl;
@@ -144,6 +159,16 @@ public class Partner implements Serializable {
 
 	public void setLogoUrl(String logoUrl) {
 		this.logoUrl = logoUrl;
+	}
+
+
+	@Column(nullable=false, precision=10, scale=8)
+	public BigDecimal getLongitude() {
+		return this.longitude;
+	}
+
+	public void setLongitude(BigDecimal longitude) {
+		this.longitude = longitude;
 	}
 
 
