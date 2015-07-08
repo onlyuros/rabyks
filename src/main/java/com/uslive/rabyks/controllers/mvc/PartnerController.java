@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.uslive.rabyks.models.mysql.Partner;
+import com.uslive.rabyks.models.mysql.Type;
 import com.uslive.rabyks.repositories.mysql.PartnerRepository;
+import com.uslive.rabyks.repositories.mysql.TypeRepository;
 
 @Controller
 public class PartnerController {
@@ -22,6 +24,9 @@ public class PartnerController {
 
 	@Autowired
 	private PartnerRepository partnerRepo;
+	
+	@Autowired
+	private TypeRepository typeRepo;
 	
 	@RequestMapping(value="/getPartner/{id}", method=RequestMethod.GET)
 	@ResponseBody
@@ -70,5 +75,17 @@ public class PartnerController {
 			log.error("getLatestPartners error: ", e);
 			return null;
 		}
+	}
+	
+	@RequestMapping(value="/getTypes", method=RequestMethod.GET)
+	@ResponseBody
+	public List<Type> getTypes() {
+		List<Type> typeList = null;
+		try {
+			typeList = typeRepo.findAll();
+		} catch (Exception e) {
+			log.error("getTypes error", e);
+		}
+		return typeList;
 	}
 }
