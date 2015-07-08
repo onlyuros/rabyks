@@ -1,7 +1,11 @@
 package com.uslive.rabyks.models.mysql;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.List;
 
 
@@ -21,6 +25,10 @@ public class Type implements Serializable {
 	public Type() {
 	}
 
+	public Type(int id, String type) {
+		this.id = id;
+		this.type = type;
+	}
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -46,6 +54,7 @@ public class Type implements Serializable {
 
 	//bi-directional many-to-many association to Partner
 	@ManyToMany(mappedBy="types")
+	@JsonIgnore
 	public List<Partner> getPartners() {
 		return this.partners;
 	}

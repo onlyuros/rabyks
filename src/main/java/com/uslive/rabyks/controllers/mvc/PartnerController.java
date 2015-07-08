@@ -68,7 +68,6 @@ public class PartnerController {
 	@RequestMapping(value="/getLatestPartners/{createdAt}", method=RequestMethod.GET)
 	@ResponseBody
 	public List<Partner> getLatestPartners(@PathVariable("createdAt") BigInteger createdAt) {
-		System.out.println("USO LI SI");
 		try { 
 			return partnerRepo.findByCreatedAtGreaterThan(createdAt);
 		} catch (Exception e) {

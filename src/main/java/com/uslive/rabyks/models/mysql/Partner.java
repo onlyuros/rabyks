@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.math.BigInteger;
 import java.math.BigDecimal;
 import java.util.List;
@@ -217,6 +219,7 @@ public class Partner implements Serializable {
 
 	//bi-directional many-to-many association to User
 	@ManyToMany
+	@JsonIgnore
 	@JoinTable(
 		name="user_partner"
 		, joinColumns={
@@ -237,6 +240,7 @@ public class Partner implements Serializable {
 
 	//bi-directional many-to-many association to User
 	@ManyToMany(mappedBy="partners2")
+	@JsonIgnore
 	public List<User> getUsers2() {
 		return this.users2;
 	}
