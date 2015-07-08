@@ -1,7 +1,9 @@
 package com.uslive.rabyks.controllers.mvc;
 
 import java.io.PrintWriter;
+import java.util.List;
 
+import org.json.JSONArray;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.uslive.rabyks.common.SharedLists;
 import com.uslive.rabyks.models.ClubNameSocket;
+import com.uslive.rabyks.models.mongo.Objects;
 import com.uslive.rabyks.models.mongo.PartnerObjectSetup;
 import com.uslive.rabyks.repositories.mongo.PartnerObjectSetupRepository;
 import com.uslive.rabyks.repositories.mysql.PartnerRepository;
@@ -53,19 +56,22 @@ public class PartnerObjectSetupController {
 //			posOld.setDefaultSepareSeatCount(pos.getDefaultSepareSeatCount());
 //			posOld.setDefaultStandSeatCount(pos.getDefaultStandSeatCount());
 //			posOld.setDefaultTableSeatCount(pos.getDefaultTableSeatCount());
-			posDB.setObjects(pos.getObjects());
+			List<Objects> objL = pos.getObjects();
+			posDB.setObjects(objL);
 			posRepo.save(posDB); 
-//			
-//			synchronized(SharedLists.clubNameSocketList) {
-//	    		System.out.println("USAO U SINH clubNameSocketList");
-//	        	for(ClubNameSocket cns : SharedLists.clubNameSocketList) {
-//	    				if(pos.getPartnerId() == cns.getPartnerId()) {
-//		            		PrintWriter outA = new PrintWriter(cns.getSocket().getOutputStream(), true);
-//		            		System.out.println("PISE NA SVE SOCKETE");
-//		            		outA.println("poruka:" + "partnerObjectSetup");
-//	    				}
-//	        	}
-//	    	}
+			
+			JSONArray objA = new JSONArray(objL);
+			
+			synchronized(SharedLists.clubNameSocketList) {
+	    		System.out.println("USAO U SINH clubNameSocketList");
+	        	for(ClubNameSocket cns : SharedLists.clubNameSocketList) {
+	    				if(pos.getPartnerId() == cns.getPartnerId()) {
+		            		PrintWriter outA = new PrintWriter(cns.getSocket().getOutputStream(), true);
+		            		System.out.println("PISE NA SVE SOCKETE");
+		            		outA.println("partnerObjectSetup:" + objA.toString());
+	    				}
+	        	}
+	    	}
 		} catch (Exception e) {
 			log.error("updatePartnerObjectSetup error! ", e);
 		}

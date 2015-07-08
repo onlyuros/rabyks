@@ -3,8 +3,8 @@ package com.uslive.rabyks.models.mongo;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection="reservations")
-public class Reservation {
+@Document(collection="confirmed_reservations")
+public class ConfirmedReservation {
 
 	@Id
     private String id;
@@ -13,14 +13,10 @@ public class Reservation {
 	
 	private String objectId;
 	
-	private String personCount;
-	
-	private String timeOfReservation;
-
-	private String reservationBy;
-	
 	private String type;
 	
+	private String dateOfReservation;
+
 	public String getId() {
 		return id;
 	}
@@ -45,35 +41,19 @@ public class Reservation {
 		this.objectId = objectId;
 	}
 
-	public String getPersonCount() {
-		return personCount;
-	}
-
-	public void setPersonCount(String personCount) {
-		this.personCount = personCount;
-	}
-
-	public String getTimeOfReservation() {
-		return timeOfReservation;
-	}
-
-	public void setTimeOfReservation(String timeOfReservation) {
-		this.timeOfReservation = timeOfReservation;
-	}
-
-	public String getReservationBy() {
-		return reservationBy;
-	}
-
-	public void setReservationBy(String reservationBy) {
-		this.reservationBy = reservationBy;
-	}
-
 	public String getType() {
 		return type;
 	}
 
 	public void setType(String type) {
 		this.type = type;
+	}
+
+	public String getDateOfReservation() {
+		return dateOfReservation;
+	}
+
+	public void setDateOfReservation(String dateOfReservation) {
+		this.dateOfReservation = dateOfReservation;
 	}
 }
