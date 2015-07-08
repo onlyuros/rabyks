@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 07, 2015 at 03:21 PM
+-- Generation Time: Jul 08, 2015 at 01:09 PM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -39,7 +39,6 @@ CREATE TABLE IF NOT EXISTS `partners` (
   `galery_img_1_url` varchar(100) DEFAULT NULL,
   `galery_img_2_url` varchar(100) DEFAULT NULL,
   `galery_img_3_url` varchar(100) DEFAULT NULL,
-  `type` int(11) NOT NULL,
   `details` varchar(100) DEFAULT NULL,
   `working_hours` varchar(100) NOT NULL,
   `created_at` bigint(20) NOT NULL,
@@ -53,14 +52,46 @@ CREATE TABLE IF NOT EXISTS `partners` (
 -- Dumping data for table `partners`
 --
 
-INSERT INTO `partners` (`id`, `name`, `address`, `number`, `logo_url`, `layout_img_url`, `galery_img_1_url`, `galery_img_2_url`, `galery_img_3_url`, `type`, `details`, `working_hours`, `created_at`, `modified_at`, `longitude`, `latitude`) VALUES
-(1, 'drugstore', 'Mali Simanovci 200', '987654321', 'https://s3-us-west-2.amazonaws.com/klubovi/drugstore1.jpg', 'https://s3-us-west-2.amazonaws.com/klubovi/drugstoreLayout.png', 'https://s3-us-west-2.amazonaws.com/klubovi/drugstore2.jpg', 'https://s3-us-west-2.amazonaws.com/klubovi/drugstore3.jpg', 'https://s3-us-west-2.amazonaws.com/klubovi/drugstore4.jpg', 1, 'Dodjite da prskamo zajedno', '22-06', 692299830, 0, '20.41379300', '44.81621800'),
-(2, 'terrace', 'Idi mi dodji mi 3', '123456789', 'https://s3-us-west-2.amazonaws.com/klubovi/terrace+(1).jpg', 'https://s3-us-west-2.amazonaws.com/klubovi/terraceLayout.png', 'https://s3-us-west-2.amazonaws.com/klubovi/terrace+(2).jpg', 'https://s3-us-west-2.amazonaws.com/klubovi/terrace+(3).jpg', 'https://s3-us-west-2.amazonaws.com/klubovi/terrace+(4).jpg', 2, 'Ovo ce da glumi nesto drugo', '16-22', 628191030, 0, '20.41379300', '44.81621800'),
-(3, 'djole', 'adresa', '123654789', 'https://s3-us-west-2.amazonaws.com/klubovi/dzukac+(1).jpg', 'https://s3-us-west-2.amazonaws.com/klubovi/dzukacLayout.png', 'https://s3-us-west-2.amazonaws.com/klubovi/dzukac+(2).jpg', 'https://s3-us-west-2.amazonaws.com/klubovi/dzukac+(3).jpg', 'https://s3-us-west-2.amazonaws.com/klubovi/dzukac+(4).jpg', 3, 'detalji', '22-24', 1434823440, 0, '20.41379300', '44.81621800'),
-(4, 'mountain', 'planinska 5', '789654123', 'https://s3-us-west-2.amazonaws.com/klubovi/mountain+(1).jpg', 'https://s3-us-west-2.amazonaws.com/klubovi/dzukacLayout.png', 'https://s3-us-west-2.amazonaws.com/klubovi/mountain+(2).jpg', 'https://s3-us-west-2.amazonaws.com/klubovi/mountain+(3).jpg', 'https://s3-us-west-2.amazonaws.com/klubovi/dzukac+(4).jpg', 3, 'detaji detalji', '08-24', 1434894801, 0, '20.41379300', '44.81621800'),
-(5, 'Lasta', 'Krs i lom 12bb', '453441241', 'https://s3-us-west-2.amazonaws.com/klubovi/lasta+(1).png', 'https://s3-us-west-2.amazonaws.com/klubovi/lastaLayout.png', 'https://s3-us-west-2.amazonaws.com/klubovi/lasta+(2).jpg', 'https://s3-us-west-2.amazonaws.com/klubovi/lasta+(3).jpg', 'https://s3-us-west-2.amazonaws.com/klubovi/lasta+(4).jpg', 1, 'Svasta se ovde dogadja', '00-24', 1436273860, 0, '20.41676900', '44.75384600'),
-(7, 'Smokvica', 'Kralja Petra 44', '666-666', 'https://s3-us-west-2.amazonaws.com/klubovi/smokvica+(1).jpg', 'https://s3-us-west-2.amazonaws.com/klubovi/smokvica+Layout.png', 'https://s3-us-west-2.amazonaws.com/klubovi/smokvica+(2).jpg', 'https://s3-us-west-2.amazonaws.com/klubovi/smokvica+(3).jpg', 'https://s3-us-west-2.amazonaws.com/klubovi/smokvica+(4).jpg', 2, 'Smokvica kod nas samo belo', '16-24', 1436273860, 0, '20.41676900', '44.75384600'),
-(8, 'Freestyler', 'Kosmarska 11', '9876543', 'https://s3-us-west-2.amazonaws.com/klubovi/free+(1).png', 'https://s3-us-west-2.amazonaws.com/klubovi/freeLayout.png', 'https://s3-us-west-2.amazonaws.com/klubovi/free+(2).png', 'https://s3-us-west-2.amazonaws.com/klubovi/free+(3).png', 'https://s3-us-west-2.amazonaws.com/klubovi/free+(4).png', 1, NULL, '19-23', 1436273860, 0, '20.41676900', '44.75384600');
+INSERT INTO `partners` (`id`, `name`, `address`, `number`, `logo_url`, `layout_img_url`, `galery_img_1_url`, `galery_img_2_url`, `galery_img_3_url`, `details`, `working_hours`, `created_at`, `modified_at`, `longitude`, `latitude`) VALUES
+(1, 'drugstore', 'Mali Simanovci 200', '987654321', 'https://s3-us-west-2.amazonaws.com/klubovi/drugstore1.jpg', 'https://s3-us-west-2.amazonaws.com/klubovi/drugstoreLayout.png', 'https://s3-us-west-2.amazonaws.com/klubovi/drugstore2.jpg', 'https://s3-us-west-2.amazonaws.com/klubovi/drugstore3.jpg', 'https://s3-us-west-2.amazonaws.com/klubovi/drugstore4.jpg', 'Dodjite da prskamo zajedno', '22-06', 692299830, 0, '20.41379300', '44.81621800'),
+(2, 'terrace', 'Idi mi dodji mi 3', '123456789', 'https://s3-us-west-2.amazonaws.com/klubovi/terrace+(1).jpg', 'https://s3-us-west-2.amazonaws.com/klubovi/terraceLayout.png', 'https://s3-us-west-2.amazonaws.com/klubovi/terrace+(2).jpg', 'https://s3-us-west-2.amazonaws.com/klubovi/terrace+(3).jpg', 'https://s3-us-west-2.amazonaws.com/klubovi/terrace+(4).jpg', 'Ovo ce da glumi nesto drugo', '16-22', 628191030, 0, '20.41379300', '44.81621800'),
+(3, 'djole', 'adresa', '123654789', 'https://s3-us-west-2.amazonaws.com/klubovi/dzukac+(1).jpg', 'https://s3-us-west-2.amazonaws.com/klubovi/dzukacLayout.png', 'https://s3-us-west-2.amazonaws.com/klubovi/dzukac+(2).jpg', 'https://s3-us-west-2.amazonaws.com/klubovi/dzukac+(3).jpg', 'https://s3-us-west-2.amazonaws.com/klubovi/dzukac+(4).jpg', 'detalji', '22-24', 1434823440, 0, '20.41379300', '44.81621800'),
+(4, 'mountain', 'planinska 5', '789654123', 'https://s3-us-west-2.amazonaws.com/klubovi/mountain+(1).jpg', 'https://s3-us-west-2.amazonaws.com/klubovi/dzukacLayout.png', 'https://s3-us-west-2.amazonaws.com/klubovi/mountain+(2).jpg', 'https://s3-us-west-2.amazonaws.com/klubovi/mountain+(3).jpg', 'https://s3-us-west-2.amazonaws.com/klubovi/dzukac+(4).jpg', 'detaji detalji', '08-24', 1434894801, 0, '20.41379300', '44.81621800'),
+(5, 'Lasta', 'Krs i lom 12bb', '453441241', 'https://s3-us-west-2.amazonaws.com/klubovi/lasta+(1).png', 'https://s3-us-west-2.amazonaws.com/klubovi/lastaLayout.png', 'https://s3-us-west-2.amazonaws.com/klubovi/lasta+(2).jpg', 'https://s3-us-west-2.amazonaws.com/klubovi/lasta+(3).jpg', 'https://s3-us-west-2.amazonaws.com/klubovi/lasta+(4).jpg', 'Svasta se ovde dogadja', '00-24', 1436273860, 0, '20.41676900', '44.75384600'),
+(6, 'Smokvica', 'Kralja Petra 44', '666-666', 'https://s3-us-west-2.amazonaws.com/klubovi/smokvica+(1).jpg', 'https://s3-us-west-2.amazonaws.com/klubovi/smokvica+Layout.png', 'https://s3-us-west-2.amazonaws.com/klubovi/smokvica+(2).jpg', 'https://s3-us-west-2.amazonaws.com/klubovi/smokvica+(3).jpg', 'https://s3-us-west-2.amazonaws.com/klubovi/smokvica+(4).jpg', 'Smokvica kod nas samo belo', '16-24', 1436273860, 0, '20.41676900', '44.75384600'),
+(7, 'Freestyler', 'Kosmarska 11', '9876543', 'https://s3-us-west-2.amazonaws.com/klubovi/free+(1).png', 'https://s3-us-west-2.amazonaws.com/klubovi/freeLayout.png', 'https://s3-us-west-2.amazonaws.com/klubovi/free+(2).png', 'https://s3-us-west-2.amazonaws.com/klubovi/free+(3).png', 'https://s3-us-west-2.amazonaws.com/klubovi/free+(4).png', NULL, '19-23', 1436273860, 0, '20.41676900', '44.75384600');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `partner_type`
+--
+
+DROP TABLE IF EXISTS `partner_type`;
+CREATE TABLE IF NOT EXISTS `partner_type` (
+  `partner_id` int(11) NOT NULL,
+  `type_id` int(11) NOT NULL,
+  PRIMARY KEY (`partner_id`,`type_id`),
+  KEY `type_id` (`type_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `partner_type`
+--
+
+INSERT INTO `partner_type` (`partner_id`, `type_id`) VALUES
+(1, 1),
+(2, 1),
+(5, 1),
+(7, 1),
+(2, 2),
+(4, 2),
+(6, 2),
+(3, 3),
+(4, 3),
+(6, 3),
+(3, 4),
+(4, 4);
 
 -- --------------------------------------------------------
 
@@ -85,6 +116,29 @@ INSERT INTO `roles` (`role`, `user_id`) VALUES
 (2, 2),
 (3, 3),
 (2, 4);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `type`
+--
+
+DROP TABLE IF EXISTS `type`;
+CREATE TABLE IF NOT EXISTS `type` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `type` varchar(20) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
+--
+-- Dumping data for table `type`
+--
+
+INSERT INTO `type` (`id`, `type`) VALUES
+(1, 'nightclub'),
+(2, 'bar'),
+(3, 'restaurant'),
+(4, 'coffee shop');
 
 -- --------------------------------------------------------
 
@@ -140,6 +194,13 @@ INSERT INTO `user_partner` (`user_id`, `partner_id`) VALUES
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `partner_type`
+--
+ALTER TABLE `partner_type`
+  ADD CONSTRAINT `partner_type_ibfk_2` FOREIGN KEY (`type_id`) REFERENCES `type` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `partner_type_ibfk_1` FOREIGN KEY (`partner_id`) REFERENCES `partners` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `roles`

@@ -1,7 +1,9 @@
 package com.uslive.rabyks.models.mysql;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
 import java.math.BigInteger;
 import java.math.BigDecimal;
 import java.util.List;
@@ -30,34 +32,35 @@ public class Partner implements Serializable {
 	private BigInteger modifiedAt;
 	private String name;
 	private String number;
-	private int type;
 	private String workingHours;
 	private List<User> users1;
 	private List<User> users2;
+	private List<Type> types;
 
 	public Partner() {
 	}
-	
+
 	public Partner(int id, String name, String address, String number, 
 			String logoUrl, String layoutImgUrl, String galeryImg1Url, 
-			String galeryImg2Url, String galeryImg3Url, int type, String details,
-			String workingHours, BigInteger createdAt, BigInteger modifiedAt, BigDecimal longitude, BigDecimal latitude) {
-		this.id = id;	
-		this.name = name;
+			String galeryImg2Url, String galeryImg3Url, String details, 
+			String workingHours, BigInteger createdAt, BigInteger modifiedAt, 
+			BigDecimal longitude, BigDecimal latitude) {
+		super();
+		this.id = id;
 		this.address = address;
-		this.number = number;
-		this.logoUrl = logoUrl;
-		this.layoutImgUrl = layoutImgUrl;
+		this.createdAt = createdAt;
+		this.details = details;
 		this.galeryImg1Url = galeryImg1Url;
 		this.galeryImg2Url = galeryImg2Url;
 		this.galeryImg3Url = galeryImg3Url;
-		this.type = type;
-		this.details = details;
-		this.workingHours = workingHours;
-		this.createdAt = createdAt;
-		this.modifiedAt = modifiedAt;
-		this.longitude = longitude;
 		this.latitude = latitude;
+		this.layoutImgUrl = layoutImgUrl;
+		this.logoUrl = logoUrl;
+		this.longitude = longitude;
+		this.modifiedAt = modifiedAt;
+		this.name = name;
+		this.number = number;
+		this.workingHours = workingHours;
 	}
 
 	@Id
@@ -162,7 +165,7 @@ public class Partner implements Serializable {
 	}
 
 
-	@Column(nullable=false, precision=10, scale=8)
+	@Column(nullable=false, precision=11, scale=8)
 	public BigDecimal getLongitude() {
 		return this.longitude;
 	}
@@ -199,16 +202,6 @@ public class Partner implements Serializable {
 
 	public void setNumber(String number) {
 		this.number = number;
-	}
-
-
-	@Column(nullable=false)
-	public int getType() {
-		return this.type;
-	}
-
-	public void setType(int type) {
-		this.type = type;
 	}
 
 
@@ -250,6 +243,26 @@ public class Partner implements Serializable {
 
 	public void setUsers2(List<User> users2) {
 		this.users2 = users2;
+	}
+
+
+	//bi-directional many-to-many association to Type
+	@ManyToMany
+	@JoinTable(
+		name="partner_type"
+		, joinColumns={
+			@JoinColumn(name="partner_id", nullable=false)
+			}
+		, inverseJoinColumns={
+			@JoinColumn(name="type_id", nullable=false)
+			}
+		)
+	public List<Type> getTypes() {
+		return this.types;
+	}
+
+	public void setTypes(List<Type> types) {
+		this.types = types;
 	}
 
 }

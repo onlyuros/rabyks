@@ -31,7 +31,7 @@ public class User implements Serializable {
 		this.password = password;
 		this.number = number;
 	}
-	
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(unique=true, nullable=false)
