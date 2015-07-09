@@ -89,36 +89,37 @@ public class PartnerSocketThread extends Thread {
         			}
         			
         			List<Integer> rez = new ArrayList<Integer>();
-        			List<Objects> sviObjZaTajClub = pos.getObjects();
-        			JSONObject objekatZaSlanje;
-        			JSONArray nizObjekataZaSlanje = new JSONArray();
-					
-        			synchronized (SharedLists.listaRezervacija) {
-						for(Rezervisan rzrv : SharedLists.listaRezervacija) {
-							if(partnerId == rzrv.getPartnerId()) {
-								rez.add(rzrv.getObjectId());
-								//out.println(rzrv.getObjectId());
+        			if(pos != null) {
+        				List<Objects> sviObjZaTajClub = pos.getObjects();
+	        			JSONObject objekatZaSlanje;
+	        			JSONArray nizObjekataZaSlanje = new JSONArray();
+						
+	        			synchronized (SharedLists.listaRezervacija) {
+							for(Rezervisan rzrv : SharedLists.listaRezervacija) {
+								if(partnerId == rzrv.getPartnerId()) {
+									rez.add(rzrv.getObjectId());
+									//out.println(rzrv.getObjectId());
+								}
 							}
-						}
-						for(Objects obj : sviObjZaTajClub) {
-							if(rez.contains(obj.getObjectId())) {
-								obj.setAvailability(false);
+							for(Objects obj : sviObjZaTajClub) {
+								if(rez.contains(obj.getObjectId())) {
+									obj.setAvailability(false);
+								}
+								objekatZaSlanje = new JSONObject();
+								objekatZaSlanje.put("objectId", obj.getObjectId());
+								objekatZaSlanje.put("type", obj.getType());
+								objekatZaSlanje.put("timeOut", obj.getTimeOut());
+								objekatZaSlanje.put("price", obj.getPrice());
+								objekatZaSlanje.put("availability", obj.isAvailability());
+								objekatZaSlanje.put("numberOfSeats", obj.getNumberOfSeats());
+								objekatZaSlanje.put("coordinateX", obj.getCoordinateX());
+								objekatZaSlanje.put("coordinateY", obj.getCoordinateY());
+								nizObjekataZaSlanje.put(objekatZaSlanje);
 							}
-							objekatZaSlanje = new JSONObject();
-							objekatZaSlanje.put("objectId", obj.getObjectId());
-							objekatZaSlanje.put("type", obj.getType());
-							objekatZaSlanje.put("timeOut", obj.getTimeOut());
-							objekatZaSlanje.put("price", obj.getPrice());
-							objekatZaSlanje.put("availability", obj.isAvailability());
-							objekatZaSlanje.put("numberOfSeats", obj.getNumberOfSeats());
-							objekatZaSlanje.put("coordinateX", obj.getCoordinateX());
-							objekatZaSlanje.put("coordinateY", obj.getCoordinateY());
-							nizObjekataZaSlanje.put(objekatZaSlanje);
+							out.println(nizObjekataZaSlanje);
 						}
-						out.println(nizObjekataZaSlanje);
-					}
-        		}
-            	
+        			} else {out.println(new JSONArray());}
+                }
                 else if (command.equals("rezervacija")) {
                 	
                 	String objectId = data[2];

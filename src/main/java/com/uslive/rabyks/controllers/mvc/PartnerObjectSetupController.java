@@ -51,33 +51,53 @@ public class PartnerObjectSetupController {
 	@ResponseStatus(value = HttpStatus.OK)
 	public void updatePartnerObjectSetup(@RequestBody PartnerObjectSetup pos) {
 		try {
-			
+			// nadji POS u bazi
 			PartnerObjectSetup posDB = posRepo.findByPartnerId(pos.getPartnerId());
 //			posOld.setDefaultBarseatSeatCount(pos.getDefaultBarseatSeatCount());
 //			posOld.setDefaultSepareSeatCount(pos.getDefaultSepareSeatCount());
 //			posOld.setDefaultStandSeatCount(pos.getDefaultStandSeatCount());
 //			posOld.setDefaultTableSeatCount(pos.getDefaultTableSeatCount());
-			List<Objects> objL = new ArrayList<Objects>();
-			try {
-				 objL = pos.getObjects();
-			} catch (Exception e) {
-				log.error("BRATE OVDE SMRDI", e);
+			
+			List<Objects> objL = pos.getObjects();
+			if(posDB != null) {
+				posDB.setObjects(objL);
+				posRepo.save(posDB); 
+				
+				JSONArray objA = new JSONArray(objL);
+				
+				synchronized(SharedLists.clubNameSocketList) {
+		    		System.out.println("USAO U SINH clubNameSocketList");
+		        	for(ClubNameSocket cns : SharedLists.clubNameSocketList) {
+		    				if(pos.getPartnerId() == cns.getPartnerId()) {
+			            		PrintWriter outA = new PrintWriter(cns.getSocket().getOutputStream(), true);
+			            		System.out.println("PISE NA SVE SOCKETE");
+			            		outA.println("partnerObjectSetup:" + objA.toString());
+		    				}
+		        	}
+		    	}
+			} else {
+				PartnerObjectSetup posDBNew = new PartnerObjectSetup();
+				posDBNew.setPartnerId(pos.getPartnerId());
+				posDBNew.setDefaultBarseatSeatCount(pos.getDefaultBarseatSeatCount());
+				posDBNew.setDefaultSepareSeatCount(pos.getDefaultSepareSeatCount());
+				posDBNew.setDefaultStandSeatCount(pos.getDefaultStandSeatCount());
+				posDBNew.setDefaultTableSeatCount(pos.getDefaultTableSeatCount());
+				posDBNew.setObjects(objL);
+				posRepo.save(posDB); 
+				
+				JSONArray objA = new JSONArray(objL);
+				
+				synchronized(SharedLists.clubNameSocketList) {
+		    		System.out.println("USAO U SINH clubNameSocketList");
+		        	for(ClubNameSocket cns : SharedLists.clubNameSocketList) {
+		    				if(pos.getPartnerId() == cns.getPartnerId()) {
+			            		PrintWriter outA = new PrintWriter(cns.getSocket().getOutputStream(), true);
+			            		System.out.println("PISE NA SVE SOCKETE");
+			            		outA.println("partnerObjectSetup:" + objA.toString());
+		    				}
+		        	}
+		    	}
 			}
-			posDB.setObjects(objL);
-			posRepo.save(posDB); 
-			
-			JSONArray objA = new JSONArray(objL);
-			
-			synchronized(SharedLists.clubNameSocketList) {
-	    		System.out.println("USAO U SINH clubNameSocketList");
-	        	for(ClubNameSocket cns : SharedLists.clubNameSocketList) {
-	    				if(pos.getPartnerId() == cns.getPartnerId()) {
-		            		PrintWriter outA = new PrintWriter(cns.getSocket().getOutputStream(), true);
-		            		System.out.println("PISE NA SVE SOCKETE");
-		            		outA.println("partnerObjectSetup:" + objA.toString());
-	    				}
-	        	}
-	    	}
 		} catch (Exception e) {
 			log.error("updatePartnerObjectSetup error! ", e);
 		}
