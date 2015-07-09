@@ -71,7 +71,7 @@ public class PartnerObjectSetupController {
 		    				if(pos.getPartnerId() == cns.getPartnerId()) {
 			            		PrintWriter outA = new PrintWriter(cns.getSocket().getOutputStream(), true);
 			            		System.out.println("PISE NA SVE SOCKETE");
-			            		outA.println("partnerObjectSetup:" + objA.toString());
+			            		outA.println(objA.toString());
 		    				}
 		        	}
 		    	}
@@ -93,7 +93,7 @@ public class PartnerObjectSetupController {
 		    				if(pos.getPartnerId() == cns.getPartnerId()) {
 			            		PrintWriter outA = new PrintWriter(cns.getSocket().getOutputStream(), true);
 			            		System.out.println("PISE NA SVE SOCKETE");
-			            		outA.println("partnerObjectSetup:" + objA.toString());
+			            		outA.println(objA.toString());
 		    				}
 		        	}
 		    	}
