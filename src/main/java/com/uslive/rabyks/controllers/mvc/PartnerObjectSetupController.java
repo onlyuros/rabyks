@@ -83,7 +83,7 @@ public class PartnerObjectSetupController {
 				posDBNew.setDefaultStandSeatCount(pos.getDefaultStandSeatCount());
 				posDBNew.setDefaultTableSeatCount(pos.getDefaultTableSeatCount());
 				posDBNew.setObjects(objL);
-				posRepo.save(posDB); 
+				posRepo.save(posDBNew); 
 				
 				JSONArray objA = new JSONArray(objL);
 				
