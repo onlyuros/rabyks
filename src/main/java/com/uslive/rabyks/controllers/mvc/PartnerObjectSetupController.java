@@ -1,6 +1,7 @@
 package com.uslive.rabyks.controllers.mvc;
 
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.json.JSONArray;
@@ -56,7 +57,12 @@ public class PartnerObjectSetupController {
 //			posOld.setDefaultSepareSeatCount(pos.getDefaultSepareSeatCount());
 //			posOld.setDefaultStandSeatCount(pos.getDefaultStandSeatCount());
 //			posOld.setDefaultTableSeatCount(pos.getDefaultTableSeatCount());
-			List<Objects> objL = pos.getObjects();
+			List<Objects> objL = new ArrayList<Objects>();
+			try {
+				 objL = pos.getObjects();
+			} catch (Exception e) {
+				log.error("BRATE OVDE SMRDI", e);
+			}
 			posDB.setObjects(objL);
 			posRepo.save(posDB); 
 			
