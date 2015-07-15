@@ -39,6 +39,7 @@ public class ReservationsController {
 			cr.setObjectId(objectId);
 			cr.setType(type);
 			cr.setDateOfReservation(dateOfReservation);
+			confResRepo.save(cr);
 		} catch (Exception e) {
 			log.error("reservationSuccess error: ", e);
 		}
